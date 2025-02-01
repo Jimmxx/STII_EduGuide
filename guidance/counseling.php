@@ -140,7 +140,7 @@
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">Dashboard</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="student_profiling.php" class="nav-item">
                     <span class="nav-icon">👨‍🎓</span>
                     <span class="nav-text">Student Profiling</span>
                 </a>
@@ -148,13 +148,13 @@
                     <span class="nav-icon">🗂️</span>
                     <span class="nav-text">Counseling</span>
                 </a>
-                <a href="#" class="nav-item">
+                <!-- <a href="#" class="nav-item">
                     <span class="nav-icon">📚</span>
                     <span class="nav-text">Academic & Career Planning</span>
-                </a>
-                <a href="#" class="nav-item">
+                </a> -->
+                <a href="guidance_program.php" class="nav-item">
                     <span class="nav-icon">📊</span>
-                    <span class="nav-text">Reports and Evaluation</span>
+                    <span class="nav-text">Guidance Program</span>
                 </a>
                 <a href="#" class="nav-item">
                     <span class="nav-icon">👨‍👩‍👧‍👦</span>
@@ -167,10 +167,10 @@
                 <a href="teacher.php" class="nav-item">
                     <span class="nav-icon">⚖️</span>
                     <span class="nav-text">Teacher</span>
-                </a>   <a href="#" class="nav-item">
+                <!-- </a>   <a href="#" class="nav-item">
                     <span class="nav-icon">⚠️</span>
                     <span class="nav-text">Crisis Management</span>
-                </a>
+                </a> -->
                 <a href="#" class="nav-item">
                     <span class="nav-icon">🛠️</span>
                     <span class="nav-text">Administrative Task</span>
@@ -185,10 +185,10 @@
                 </a> -->
                 
                 <!-- Settings Dropdown -->
-                <a href="#" class="nav-item settings">
+                <!-- <a href="#" class="nav-item settings">
                     <span class="nav-icon">⚙️</span>
                     <span class="nav-text">Settings</span>
-                </a>
+                </a> -->
             </nav>
         </aside>
         <!-- Main Content -->

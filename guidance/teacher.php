@@ -138,9 +138,9 @@
                     <span class="nav-icon">📚</span>
                     <span class="nav-text">Academic & Career Planning</span>
                 </a>
-                <a href="reports.php" class="nav-item">
+                <a href="guidance_program.php" class="nav-item">
                     <span class="nav-icon">📊</span>
-                    <span class="nav-text">Reports and Evaluation</span>
+                    <span class="nav-text">Guidance Program</span>
                 </a>
                 <a href="#" class="nav-item">
                     <span class="nav-icon">👨‍👩‍👧‍👦</span>

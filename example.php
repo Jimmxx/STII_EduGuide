@@ -3,104 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modal Input Form and Table</title>
-    <!-- Bootstrap CSS -->
+    <title>School Guidance and Counseling System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .dashboard-card {
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .case-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .nav-link.active {
+            font-weight: bold;
+            border-bottom: 3px solid #0d6efd;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto py-6">
-        <!-- Button to Open Modal -->
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">Add Student Report</button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="inputModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="inputModalLabel">Student Progress Report</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="studentForm">
-                            <div class="mb-3">
-                                <label for="studentName" class="form-label">Student Name</label>
-                                <input type="text" class="form-control" id="studentName" placeholder="Enter student name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="academicPerformance" class="form-label">Academic Performance</label>
-                                <input type="text" class="form-control" id="academicPerformance" placeholder="E.g., A, B+" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="attendance" class="form-label">Attendance (%)</label>
-                                <input type="number" class="form-control" id="attendance" placeholder="Enter attendance percentage" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="behavior" class="form-label">Behavior</label>
-                                <input type="text" class="form-control" id="behavior" placeholder="E.g., Excellent, Needs Improvement" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="counselorComments" class="form-label">Counselor's Comments</label>
-                                <textarea class="form-control" id="counselorComments" rows="3" placeholder="Add comments here"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success w-full">Submit</button>
-                        </form>
-                    </div>
-                </div>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">School Guidance System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cases">Cases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#staff">Staff</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <!-- Table -->
-        <div class="mt-6">
-            <table class="table table-striped table-bordered">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th>Student Name</th>
-                        <th>Academic Performance</th>
-                        <th>Attendance (%)</th>
-                        <th>Behavior</th>
-                        <th>Counselor's Comments</th>
-                    </tr>
-                </thead>
-                <tbody id="studentTableBody">
-                    <!-- Data will be inserted here dynamically -->
-                </tbody>
-            </table>
-        </div>
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section">
+            <h2 class="mb-4">System Dashboard</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card dashboard-card bg-info text-white">
+                        <div class="card-body">
+                            <h5>Total Cases</h5>
+                            <h2 id="totalCases">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more dashboard cards here -->
+            </div>
+        </section>
+
+        <!-- Case Management Section -->
+        <section id="cases" class="content-section d-none">
+            <h2 class="mb-4">Case Management</h2>
+            <div class="mb-3">
+                <button class="btn btn-primary" onclick="showCaseForm('mentalHealth')">
+                    Register Mental Health Case
+                </button>
+                <!-- Add other case type buttons -->
+            </div>
+            
+            <!-- Case Form -->
+            <div id="caseForm" class="card case-form d-none">
+                <div class="card-body">
+                    <h5 class="card-title">New Case Registration</h5>
+                    <form id="caseRegistrationForm" onsubmit="submitCase(event)">
+                        <div class="mb-3">
+                            <label class="form-label">Case Type</label>
+                            <select class="form-select" id="caseType" required>
+                                <option value="">Select Case Type</option>
+                                <option value="mentalHealth">Mental Health</option>
+                                <option value="suicidePrevention">Suicide Prevention</option>
+                                <option value="teenagePregnancy">Teenage Pregnancy</option>
+                                <option value="violence">Violence to Children</option>
+                            </select>
+                        </div>
+                        <!-- Add more form fields -->
+                        <button type="submit" class="btn btn-primary">Submit Case</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Case List -->
+            <div class="mt-4">
+                <h5>Recent Cases</h5>
+                <div id="caseList" class="list-group">
+                    <!-- Cases will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="content-section d-none">
+            <h2 class="mb-4">Programs and Workshops</h2>
+            <div class="row g-4">
+                <!-- Program cards will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Staff Section -->
+        <section id="staff" class="content-section d-none">
+            <h2 class="mb-4">Counselor Management</h2>
+            <div class="row g-4">
+                <!-- Staff cards will be dynamically added here -->
+            </div>
+        </section>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JavaScript for Form Submission -->
     <script>
-        document.getElementById('studentForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Sample Data Storage
+        let cases = JSON.parse(localStorage.getItem('cases')) || [];
+        let programs = JSON.parse(localStorage.getItem('programs')) || [];
+        let staff = JSON.parse(localStorage.getItem('staff')) || [];
 
-            // Get form data
-            const studentName = document.getElementById('studentName').value;
-            const academicPerformance = document.getElementById('academicPerformance').value;
-            const attendance = document.getElementById('attendance').value;
-            const behavior = document.getElementById('behavior').value;
-            const counselorComments = document.getElementById('counselorComments').value;
-
-            // Insert data into table
-            const tableBody = document.getElementById('studentTableBody');
-            const row = `<tr>
-                <td>${studentName}</td>
-                <td>${academicPerformance}</td>
-                <td>${attendance}</td>
-                <td>${behavior}</td>
-                <td>${counselorComments}</td>
-            </tr>`;
-            tableBody.insertAdjacentHTML('beforeend', row);
-
-            // Clear form and close modal
-            document.getElementById('studentForm').reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById('inputModal'));
-            modal.hide();
+        // Navigation Handling
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.add('d-none');
+                });
+                document.querySelector(this.getAttribute('href')).classList.remove('d-none');
+                
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
         });
+
+        // Case Form Handling
+        function showCaseForm(type) {
+            document.getElementById('caseForm').classList.remove('d-none');
+            document.getElementById('caseType').value = type;
+        }
+
+        function submitCase(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const newCase = {
+                id: Date.now(),
+                type: formData.get('caseType'),
+                date: new Date().toLocaleDateString(),
+                status: 'Open'
+            };
+            
+            cases.push(newCase);
+            localStorage.setItem('cases', JSON.stringify(cases));
+            updateDashboard();
+            e.target.reset();
+            document.getElementById('caseForm').classList.add('d-none');
+            alert('Case submitted successfully!');
+        }
+
+        // Dashboard Update
+        function updateDashboard() {
+            document.getElementById('totalCases').textContent = cases.length;
+            // Update other dashboard elements
+        }
+
+        // Initial Setup
+        function init() {
+            updateDashboard();
+            // Initialize other components
+        }
+
+        // Start the application
+        init();
     </script>
 </body>
 </html>
