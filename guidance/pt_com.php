@@ -210,134 +210,108 @@
             </nav>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content bg-gray-50 p-6" id="mainContent">
-    <div class="max-w-4xl mx-auto">
-        <!-- Review Card -->
+    <h1 class="text-2xl font-bold mb-6 text-center">Parent & Teacher Communication Form</h1>
+
+    <!-- Form Sections -->
+    <form class="space-y-6">
+        <!-- General Information -->
         <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-            <!-- Header Section -->
-            <div class="flex justify-between items-start mb-6">
+            <h2 class="text-lg font-semibold mb-4">General Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-800">Counseling Session Review</h1>
-                    <p class="text-gray-500">Session Date: May 15, 2024</p>
+                    <label class="block text-sm font-medium mb-1">Date</label>
+                    <input type="date" class="w-full p-2 border rounded">
                 </div>
-                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Completed</span>
-            </div>
-
-            <!-- Student Information -->
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Student Details</h3>
-                    <dl class="space-y-1">
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Name:</dt>
-                            <dd class="font-medium">Dermosa Sarabi</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Course/Year:</dt>
-                            <dd class="font-medium">BSIT 3-A</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Student ID:</dt>
-                            <dd class="font-medium">2013-76546-CM-0</dd>
-                        </div>
-                    </dl>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Time</label>
+                    <input type="time" class="w-full p-2 border rounded">
                 </div>
-
-                <!-- Session Details -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Session Details</h3>
-                    <dl class="space-y-1">
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Counselor:</dt>
-                            <dd class="font-medium">Warren Duran</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Duration:</dt>
-                            <dd class="font-medium">45 minutes</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Type:</dt>
-                            <dd class="font-medium">Individual Counseling</dd>
-                        </div>
-                    </dl>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Recorded By (Guidance Staff)</label>
+                    <input type="text" class="w-full p-2 border rounded">
                 </div>
             </div>
-
-            <!-- Review Sections -->
-            <div class="space-y-6">
-                <!-- Background -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">1. Background of the Case</h3>
-                    <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">
-                        The student reported difficulties adjusting to online learning, experiencing increased anxiety 
-                        and decreased motivation. Academic performance has declined over the past two semesters.
-                    </p>
+            
+            <div class="mt-4">
+                <label class="block text-sm font-medium mb-2">Communication Type</label>
+                <div class="flex flex-wrap gap-4">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="form-checkbox"> Meeting
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="form-checkbox"> Email
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="form-checkbox"> Phone Call
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" class="form-checkbox"> Other:
+                        <input type="text" class="p-1 border-b-2" placeholder="Specify">
+                    </label>
                 </div>
-
-                <!-- Counseling Plan -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">2. Counseling Plan</h3>
-                    <div class="bg-gray-50 p-4 rounded-lg space-y-3">
-                        <div>
-                            <p class="text-sm text-gray-500">Approach Used:</p>
-                            <p class="text-gray-600">Cognitive Behavioral Therapy</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Goals:</p>
-                            <p class="text-gray-600">Develop coping strategies for anxiety, create study schedule, 
-                            improve time management skills</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Comments -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">3. Session Comments</h3>
-                    <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">
-                        Student engaged well in session. Identified key stressors and created action plan. 
-                        Agreed to implement new study schedule and practice relaxation techniques daily.
-                    </p>
-                </div>
-
-                <!-- Recommendations -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">4. Recommendations</h3>
-                    <ul class="list-disc list-inside text-gray-600 bg-gray-50 p-4 rounded-lg space-y-2">
-                        <li>Follow up session in 2 weeks</li>
-                        <li>Implement structured study schedule</li>
-                        <li>Practice mindfulness exercises daily</li>
-                        <li>Consult with academic advisor for course load assessment</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex justify-end gap-4 mt-8">
-            <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg" onclick="window.location.href='individual_counseling.php'">Go back to Counseling</button>
-                <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                <i class="bi bi-printer"></i>
-                </button>
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-700" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                   Submit
-                </button>
             </div>
         </div>
-    </div>
+
+        <!-- Meeting Summary -->
+        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <h2 class="text-lg font-semibold mb-4">Meeting Summary (If Applicable)</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Meeting Type</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="form-checkbox"> Parent-Teacher
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="form-checkbox"> IEP
+                        </label>
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" class="form-checkbox"> Other:
+                            <input type="text" class="p-1 border-b-2" placeholder="Specify">
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Participants</label>
+                    <input type="text" class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Key Discussion Points & Outcomes</label>
+                    <textarea class="w-full p-2 border rounded" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication Log -->
+        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <h2 class="text-lg font-semibold mb-4">Communication Log</h2>
+            <label class="block text-sm font-medium mb-1">Summary of Discussion</label>
+            <textarea class="w-full p-2 border rounded" rows="4"></textarea>
+        </div>
+
+        <!-- Form Buttons -->
+        <div class="flex justify-end gap-4 mt-6" style="margin-bottom: 20px;">
+            <button type="button" class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</button>
+            <button type="button" class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600" data-bs-toggle="modal" data-bs-target="#confirmationModal4">Save Record</button>
+        </div>
+    </form>
 </main>
 
 <!--  Confirmation Modal -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="confirmationModal4" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Are you sure you want to submit?</h5>
+                <h5 class="modal-title">Are you sure?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <p>Do you want to proceed?</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <a href="final_submit_counseling.php" class="btn btn-success">Yes, Submit</a>
+                <a href="submit_pt_com.php" class="btn btn-success">Yes</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Not Yet</button>
             </div>
         </div>
@@ -349,11 +323,8 @@
 
 
 
-
-
-
 </div>
-<?php include 'view_modal.php' ;?>
+
 <script>
     // Toggle sidebar functionality
     const sidebar = document.getElementById('sidebar');

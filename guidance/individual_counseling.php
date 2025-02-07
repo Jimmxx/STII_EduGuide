@@ -155,7 +155,7 @@
         <aside class="sidebar h-screen relative" id="sidebar">
             <button class="toggle-sidebar-btn" id="toggleSidebar">&#9776;</button>
             <nav class="mt-6 space-y-4">
-                <a href="#" class="nav-item">
+                <a href="home_admin.php" class="nav-item">
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -175,16 +175,16 @@
                     <span class="nav-icon">📊</span>
                     <span class="nav-text">Guidance Program</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="ptc.php" class="nav-item">
                     <span class="nav-icon">👨‍👩‍👧‍👦</span>
                     <span class="nav-text">Parent & Teacher Communication</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="event.php" class="nav-item">
                     <span class="nav-icon">📅</span>
                     <span class="nav-text">Programs & Events</span>
                 </a>
                 <a href="teacher.php" class="nav-item">
-                    <span class="nav-icon">⚖️</span>
+                    <span class="nav-icon">🧑‍🏫</span>
                     <span class="nav-text">Teacher</span>
                 </a>
                 <!-- <a href="#" class="nav-item">
@@ -198,6 +198,10 @@
                 <a href="#" class="nav-item">
                     <span class="nav-icon">🛠️</span>
                     <span class="nav-text">Administrative Task</span>
+                </a>
+                <a href="#" class="nav-item settings">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-text">Reports</span>
                 </a>
                 <a href="#" class="nav-item">
                     <span class="nav-icon">⚙️</span>
@@ -293,7 +297,7 @@
 
         <!-- Buttons -->
         <div class="flex justify-end gap-4 mt-6" style="margin-bottom: 50px;">
-            <button type="button" class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</button>
+            <button type="button" class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600" onclick="window.location='counseling.php'">Cancel</button>
             <button type="button" class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600" data-bs-toggle="modal" data-bs-target="#confirmationModal">
     Save
 </button>

@@ -1,192 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Guidance and Counseling System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .dashboard-card {
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-        }
-        .case-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .nav-link.active {
-            font-weight: bold;
-            border-bottom: 3px solid #0d6efd;
-        }
-    </style>
-</head>
-<body class="bg-light">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">School Guidance System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#dashboard">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cases">Cases</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#programs">Programs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#staff">Staff</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container mt-4">
-        <!-- Dashboard Section -->
-        <section id="dashboard" class="content-section">
-            <h2 class="mb-4">System Dashboard</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="card dashboard-card bg-info text-white">
-                        <div class="card-body">
-                            <h5>Total Cases</h5>
-                            <h2 id="totalCases">0</h2>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>School Guidance and Counseling System</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <style>
+            .dashboard-card {
+                transition: all 0.3s ease;
+            }
+            .dashboard-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+            .case-item {
+                transition: all 0.2s ease;
+            }
+            .case-item:hover {
+                background-color: rgba(243, 244, 246, 1);
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <!-- Top Navigation -->
+        <nav class="bg-white border-b border-gray-200 fixed w-full z-30 top-0">
+            <div class="px-4 md:px-6 py-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <button class="lg:hidden mr-2" type="button">
+                            <i class="fas fa-bars text-gray-500"></i>
+                        </button>
+                        <span class="text-xl font-bold text-blue-600">School Guidance System</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="hidden md:block relative">
+                            <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        
+                        <button class="p-2 rounded-full hover:bg-gray-100">
+                            <i class="fas fa-bell text-gray-600"></i>
+                        </button>
+                        
+                        <div class="relative">
+                            <img src="/api/placeholder/32/32" alt="Profile" class="w-8 h-8 rounded-full">
                         </div>
                     </div>
                 </div>
-                <!-- Add more dashboard cards here -->
             </div>
-        </section>
+        </nav>
 
-        <!-- Case Management Section -->
-        <section id="cases" class="content-section d-none">
-            <h2 class="mb-4">Case Management</h2>
-            <div class="mb-3">
-                <button class="btn btn-primary" onclick="showCaseForm('mentalHealth')">
-                    Register Mental Health Case
-                </button>
-                <!-- Add other case type buttons -->
-            </div>
-            
-            <!-- Case Form -->
-            <div id="caseForm" class="card case-form d-none">
-                <div class="card-body">
-                    <h5 class="card-title">New Case Registration</h5>
-                    <form id="caseRegistrationForm" onsubmit="submitCase(event)">
-                        <div class="mb-3">
-                            <label class="form-label">Case Type</label>
-                            <select class="form-select" id="caseType" required>
-                                <option value="">Select Case Type</option>
-                                <option value="mentalHealth">Mental Health</option>
-                                <option value="suicidePrevention">Suicide Prevention</option>
-                                <option value="teenagePregnancy">Teenage Pregnancy</option>
-                                <option value="violence">Violence to Children</option>
-                            </select>
+        <!-- Main Content -->
+        <div class="pt-16">
+            <div class="container mx-auto px-4 py-6">
+                <!-- Navigation Tabs -->
+                <ul class="nav nav-tabs mb-6" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#cases">Cases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#staff">Staff</a>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Dashboard Tab -->
+                    <div class="tab-pane fade show active" id="dashboard">
+                        <!-- Metric Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="dashboard-card bg-white rounded-lg p-6 shadow-sm">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-sm font-semibold text-gray-600">Total Active Cases</h3>
+                                    <i class="fas fa-chart-bar text-gray-400"></i>
+                                </div>
+                                <div class="text-2xl font-bold">24</div>
+                                <p class="text-xs text-gray-500 mt-1">+2 from last week</p>
+                            </div>
+
+                            <div class="dashboard-card bg-white rounded-lg p-6 shadow-sm">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-sm font-semibold text-gray-600">Upcoming Sessions</h3>
+                                    <i class="fas fa-calendar text-gray-400"></i>
+                                </div>
+                                <div class="text-2xl font-bold">8</div>
+                                <p class="text-xs text-gray-500 mt-1">Next session in 2 hours</p>
+                            </div>
+
+                            <div class="dashboard-card bg-white rounded-lg p-6 shadow-sm">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-sm font-semibold text-gray-600">Active Counselors</h3>
+                                    <i class="fas fa-users text-gray-400"></i>
+                                </div>
+                                <div class="text-2xl font-bold">5</div>
+                                <p class="text-xs text-gray-500 mt-1">3 currently available</p>
+                            </div>
                         </div>
-                        <!-- Add more form fields -->
-                        <button type="submit" class="btn btn-primary">Submit Case</button>
-                    </form>
+
+                        <!-- Recent Cases -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 class="text-lg font-bold text-gray-900">Recent Cases</h2>
+                                    <p class="text-sm text-gray-500">Overview of latest counseling cases</p>
+                                </div>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus mr-2"></i>New Case
+                                </button>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="case-item flex items-center justify-between p-4 border rounded-lg">
+                                    <div>
+                                        <h3 class="font-medium">Alex Johnson</h3>
+                                        <p class="text-sm text-gray-500">Mental Health Consultation</p>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">High Priority</span>
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Open</span>
+                                    </div>
+                                </div>
+
+                                <div class="case-item flex items-center justify-between p-4 border rounded-lg">
+                                    <div>
+                                        <h3 class="font-medium">Sarah Smith</h3>
+                                        <p class="text-sm text-gray-500">Academic Counseling</p>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Medium Priority</span>
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">In Progress</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cases Tab -->
+                    <div class="tab-pane fade" id="cases">
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 class="text-lg font-bold text-gray-900">Case Management</h2>
+                                    <p class="text-sm text-gray-500">Manage and track ongoing counseling cases</p>
+                                </div>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus mr-2"></i>Register New Case
+                                </button>
+                            </div>
+
+                            <!-- Case Filters -->
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <select class="form-select w-48">
+                                    <option>Filter by Status</option>
+                                    <option>Open</option>
+                                    <option>In Progress</option>
+                                    <option>Resolved</option>
+                                </select>
+                                <select class="form-select w-48">
+                                    <option>Filter by Type</option>
+                                    <option>Mental Health</option>
+                                    <option>Academic</option>
+                                    <option>Behavioral</option>
+                                </select>
+                                <select class="form-select w-48">
+                                    <option>Sort by</option>
+                                    <option>Date</option>
+                                    <option>Priority</option>
+                                    <option>Status</option>
+                                </select>
+                            </div>
+
+                            <!-- Case List -->
+                            <div class="space-y-4">
+                                <div class="case-item flex items-center justify-between p-4 border rounded-lg">
+                                    <div class="flex-1">
+                                        <div class="flex items-center">
+                                            <img src="/api/placeholder/40/40" alt="Student" class="w-10 h-10 rounded-full mr-4">
+                                            <div>
+                                                <h3 class="font-medium">Alex Johnson</h3>
+                                                <p class="text-sm text-gray-500">Mental Health Consultation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">High Priority</span>
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Open</span>
+                                        <button class="btn btn-outline-primary btn-sm">View Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Case List -->
-            <div class="mt-4">
-                <h5>Recent Cases</h5>
-                <div id="caseList" class="list-group">
-                    <!-- Cases will be dynamically added here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Programs Section -->
-        <section id="programs" class="content-section d-none">
-            <h2 class="mb-4">Programs and Workshops</h2>
-            <div class="row g-4">
-                <!-- Program cards will be dynamically added here -->
-            </div>
-        </section>
-
-        <!-- Staff Section -->
-        <section id="staff" class="content-section d-none">
-            <h2 class="mb-4">Counselor Management</h2>
-            <div class="row g-4">
-                <!-- Staff cards will be dynamically added here -->
-            </div>
-        </section>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Sample Data Storage
-        let cases = JSON.parse(localStorage.getItem('cases')) || [];
-        let programs = JSON.parse(localStorage.getItem('programs')) || [];
-        let staff = JSON.parse(localStorage.getItem('staff')) || [];
-
-        // Navigation Handling
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.classList.add('d-none');
-                });
-                document.querySelector(this.getAttribute('href')).classList.remove('d-none');
-                
-                document.querySelectorAll('.nav-link').forEach(l => {
-                    l.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-
-        // Case Form Handling
-        function showCaseForm(type) {
-            document.getElementById('caseForm').classList.remove('d-none');
-            document.getElementById('caseType').value = type;
-        }
-
-        function submitCase(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const newCase = {
-                id: Date.now(),
-                type: formData.get('caseType'),
-                date: new Date().toLocaleDateString(),
-                status: 'Open'
-            };
-            
-            cases.push(newCase);
-            localStorage.setItem('cases', JSON.stringify(cases));
-            updateDashboard();
-            e.target.reset();
-            document.getElementById('caseForm').classList.add('d-none');
-            alert('Case submitted successfully!');
-        }
-
-        // Dashboard Update
-        function updateDashboard() {
-            document.getElementById('totalCases').textContent = cases.length;
-            // Update other dashboard elements
-        }
-
-        // Initial Setup
-        function init() {
-            updateDashboard();
-            // Initialize other components
-        }
-
-        // Start the application
-        init();
-    </script>
-</body>
-</html>
+        <script>
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        </script>
+    </body>
+    </html>

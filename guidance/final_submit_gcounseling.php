@@ -78,6 +78,24 @@
             background-color:transparent !important ;
         }
     </style>
+
+<style>
+        /* Add custom checkbox styling */
+        .student-checkbox {
+            accent-color: #3b82f6; /* Blue color */
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        
+        /* Card styling */
+        .student-card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+            padding: 1.5rem;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
@@ -110,7 +128,10 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-
+        .student-checkbox{
+            height: 40px;
+            width: 40px;
+        }
         .profile-details {
             flex: 1;
             min-width: 300px;
@@ -211,55 +232,52 @@
         </aside>
 
         <main class="main-content bg-gray-50 p-6" id="mainContent">
+        <main class="main-content bg-gray-50 p-6" id="mainContent">
     <div class="max-w-4xl mx-auto">
         <!-- Review Card -->
         <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
             <!-- Header Section -->
             <div class="flex justify-between items-start mb-6">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-800">Counseling Session Review</h1>
-                    <p class="text-gray-500">Session Date: May 15, 2024</p>
+                    <h1 class="text-2xl font-bold text-gray-800">Group Counseling Session Review</h1>
+                    <p class="text-gray-500">Session Date: [Insert Date]</p>
                 </div>
                 <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Completed</span>
             </div>
 
-            <!-- Student Information -->
+            <!-- Session Information -->
             <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Student Details</h3>
-                    <dl class="space-y-1">
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Name:</dt>
-                            <dd class="font-medium">Dermosa Sarabi</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Course/Year:</dt>
-                            <dd class="font-medium">BSIT 3-A</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Student ID:</dt>
-                            <dd class="font-medium">2013-76546-CM-0</dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <!-- Session Details -->
                 <div class="space-y-2">
                     <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Session Details</h3>
                     <dl class="space-y-1">
                         <div class="flex justify-between">
                             <dt class="text-gray-500">Counselor:</dt>
-                            <dd class="font-medium">Warren Duran</dd>
+                            <dd class="font-medium">[Insert Counselor Name]</dd>
                         </div>
                         <div class="flex justify-between">
                             <dt class="text-gray-500">Duration:</dt>
-                            <dd class="font-medium">45 minutes</dd>
+                            <dd class="font-medium">[Insert Duration]</dd>
                         </div>
                         <div class="flex justify-between">
                             <dt class="text-gray-500">Type:</dt>
-                            <dd class="font-medium">Individual Counseling</dd>
+                            <dd class="font-medium">Group Counseling</dd>
+                        </div>
+                        <div class="flex justify-between">
+                            <dt class="text-gray-500">Session Title:</dt>
+                            <dd class="font-medium">[Insert Session Title]</dd>
                         </div>
                     </dl>
+                </div>
+
+                <!-- Participants List -->
+                <div class="space-y-2">
+                    <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Participants</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>[Student Name 1]</li>
+                        <li>[Student Name 2]</li>
+                        <li>[Student Name 3]</li>
+                        <li>...</li>
+                    </ul>
                 </div>
             </div>
 
@@ -269,8 +287,8 @@
                 <div class="space-y-2">
                     <h3 class="font-semibold text-gray-700">1. Background of the Case</h3>
                     <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">
-                        The student reported difficulties adjusting to online learning, experiencing increased anxiety 
-                        and decreased motivation. Academic performance has declined over the past two semesters.
+                        The group counseling session focused on addressing common academic and personal challenges among participants. 
+                        Key issues discussed included time management difficulties, academic stress, and social adjustment concerns.
                     </p>
                 </div>
 
@@ -280,22 +298,21 @@
                     <div class="bg-gray-50 p-4 rounded-lg space-y-3">
                         <div>
                             <p class="text-sm text-gray-500">Approach Used:</p>
-                            <p class="text-gray-600">Cognitive Behavioral Therapy</p>
+                            <p class="text-gray-600">Cognitive Behavioral Therapy & Peer Support Strategies</p>
                         </div>
                         <div>
                             <p class="text-sm text-gray-500">Goals:</p>
-                            <p class="text-gray-600">Develop coping strategies for anxiety, create study schedule, 
-                            improve time management skills</p>
+                            <p class="text-gray-600">Enhance coping mechanisms, improve academic productivity, foster a supportive peer network</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Comments -->
+                <!-- Observations & Comments -->
                 <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">3. Session Comments</h3>
+                    <h3 class="font-semibold text-gray-700">3. Session Observations & Comments</h3>
                     <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">
-                        Student engaged well in session. Identified key stressors and created action plan. 
-                        Agreed to implement new study schedule and practice relaxation techniques daily.
+                        Participants actively engaged in discussions, shared experiences, and provided support to one another. 
+                        The session highlighted the importance of structured study habits and self-care practices.
                     </p>
                 </div>
 
@@ -303,58 +320,60 @@
                 <div class="space-y-2">
                     <h3 class="font-semibold text-gray-700">4. Recommendations</h3>
                     <ul class="list-disc list-inside text-gray-600 bg-gray-50 p-4 rounded-lg space-y-2">
-                        <li>Follow up session in 2 weeks</li>
-                        <li>Implement structured study schedule</li>
-                        <li>Practice mindfulness exercises daily</li>
-                        <li>Consult with academic advisor for course load assessment</li>
+                        <li>Follow-up session in 3 weeks</li>
+                        <li>Encourage peer accountability for study goals</li>
+                        <li>Practice relaxation techniques and mindfulness exercises</li>
+                        <li>Consult with academic advisors for study planning</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="flex justify-end gap-4 mt-8">
-            <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg" onclick="window.location.href='individual_counseling.php'">Go back to Counseling</button>
+                <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg" onclick="window.location.href='group_counseling.php'">Go back to Counseling</button>
                 <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                <i class="bi bi-printer"></i>
+                    <i class="bi bi-printer"></i>
                 </button>
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-700" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                   Submit
-                </button>
+<!-- Submit Button -->
+<button type="button" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" onclick="openModal()" >
+    Submit
+</button>
+
             </div>
         </div>
     </div>
 </main>
 
-<!--  Confirmation Modal -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Are you sure you want to submit?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p>Do you want to proceed?</p>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <a href="final_submit_counseling.php" class="btn btn-success">Yes, Submit</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Not Yet</button>
-            </div>
+
+<!-- Confirmation Modal -->
+<div id="saveConfirmationModal111" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg w-96">
+        <div class="bg-green-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+            <h5 class="text-xl font-semibold">Confirm Save</h5>
+            <button class="text-white" onclick="closeModal()">×</button>
+        </div>
+        <div class="p-4 text-center">
+            <p>Are you sure you want to save this group counseling session?</p>
+        </div>
+        <div class="flex justify-between p-4">
+            <button class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500" onclick="closeModal()">Cancel</button>
+            <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700" onclick="window.location='counseling.php'">Yes, Save</button>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-</div>
-<?php include 'view_modal.php' ;?>
 <script>
+    function openModal() {
+        document.getElementById('saveConfirmationModal111').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('saveConfirmationModal111').classList.add('hidden');
+    }
+</script>
+
+
+    <script>
     // Toggle sidebar functionality
     const sidebar = document.getElementById('sidebar');
     const toggleSidebarBtn = document.getElementById('toggleSidebar');

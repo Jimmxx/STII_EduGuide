@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - STII EduGuide</title>
+    <title>Teacher Panel - STII EduGuide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
             width: 250px;
             transition: width 0.3s ease, padding 0.3s ease;
             overflow: hidden;
-            background-color: #2c3e50;
+            background-color:  #2c3e50;
         }
 
         .sidebar.collapsed {
@@ -79,6 +79,53 @@
         }
     </style>
         <style>
+        /* Add these new styles */
+        body, html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .main-content {
+            height: calc(100vh - 4rem); /* Subtract header height */
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        /* Modified profile section */
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .student-checkbox{
+            height: 40px;
+            width: 40px;
+        }
+        .profile-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 640px) {
+            .profile-header {
+                flex-direction: column;
+            }
+            
+            .profile-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+    <style>
     /* Add this to your existing styles */
     @keyframes fadeIn {
         from {
@@ -112,53 +159,13 @@
         <aside class="sidebar h-screen relative" id="sidebar">
             <button class="toggle-sidebar-btn" id="toggleSidebar">&#9776;</button>
             <nav class="mt-6 space-y-4">
-                <a href="home_admin.php" class="nav-item">
+                <a href="home_teacher.php" class="nav-item">
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">Dashboard</span>
                 </a>
-                <a href="student_profiling.php" class="nav-item">
+                <a href="#" class="nav-item">
                     <span class="nav-icon">👨‍🎓</span>
                     <span class="nav-text">Student Profiling</span>
-                </a>
-                <a href="counseling.php" class="nav-item">
-                    <span class="nav-icon">🗂️</span>
-                    <span class="nav-text">Counseling</span>
-                </a>
-                <!-- <a href="#" class="nav-item">
-                    <span class="nav-icon">📚</span>
-                    <span class="nav-text">Academic & Career Planning</span>
-                </a> -->
-                <a href="guidance_program.php" class="nav-item">
-                    <span class="nav-icon">📊</span>
-                    <span class="nav-text">Guidance Program</span>
-                </a>
-                <a href="ptc.php" class="nav-item">
-                    <span class="nav-icon">👨‍👩‍👧‍👦</span>
-                    <span class="nav-text">Parent & Teacher Communication</span>
-                </a>
-                <a href="event.php" class="nav-item">
-                    <span class="nav-icon">📅</span>
-                    <span class="nav-text">Programs & Events</span>
-                </a>
-                <a href="teacher.php" class="nav-item">
-                    <span class="nav-icon">🧑‍🏫</span>
-                    <span class="nav-text">Teacher</span>
-                </a>
-                <!-- <a href="#" class="nav-item">
-                    <span class="nav-icon">🔗</span>
-                    <span class="nav-text">Referrals & Resources</span>
-                </a> -->
-                <!-- <a href="#" class="nav-item">
-                    <span class="nav-icon">⚠️</span>
-                    <span class="nav-text">Crisis Management</span>
-                </a> -->
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">🛠️</span>
-                    <span class="nav-text">Administrative Task</span>
-                </a>
-                <a href="#" class="nav-item settings">
-                    <span class="nav-icon">📝</span>
-                    <span class="nav-text">Reports</span>
                 </a>
                 <a href="#" class="nav-item">
                     <span class="nav-icon">⚙️</span>
@@ -169,66 +176,9 @@
 
         <!-- Main Content -->
         <main class="main-content bg-gray-50 p-6" id="mainContent">
-        <h1 class="text-2xl font-bold mb-6 text-center">Student Profiling</h1>
-        
-        <!-- Search and Add Student -->
-        <div class="flex justify-between items-center mb-4">
-    <div class="flex items-center space-x-2 ml-auto"> <!-- Added ml-auto to push to right -->
-        <input type="text" placeholder="Search..." class="border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>
-    </div>
-</div>
-
-        <!-- Student Table -->
-        <div class="overflow-x-auto rounded-lg shadow-md">
-    <table class="min-w-full border-collapse bg-white">
-        <thead>
-            <tr class="bg-gray-100">
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">No.</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Full Name</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Student ID</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Grade Level</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Strand</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Birthdate</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Contact</th>
-                <th class="border border-gray-200 px-6 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Action</th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-            <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700 text-center">1</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700">John Doe</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700">2025001</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700">Grade 12</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700">STEM</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700">2005-06-15</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-gray-700">+1 234 567 890</td>
-                <td class="border border-gray-200 px-6 py-4 text-sm text-center">
-                    <button data-bs-toggle="modal" data-bs-target="#viewDetailsModal" class="bg-blue-500 text-white px-3 py-1.5 rounded-md hover:bg-blue-600 transition duration-150 ease-in-out flex items-center justify-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
-                        </svg>
-                        View
-                    </button>
-                </td>
-            </tr>
-            <!-- Additional rows can be added here -->
-        </tbody>
-    </table>
-</div>    
-</main>
-
-</div>
-<!--view  Modal -->
-<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header bg-blue-500 text-white">
-                <h5 class="modal-title" id="viewDetailsModalLabel">Personal Details</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <h1 class="text-2xl font-bold mb-6 text-center">Student Details</h1>
+            
 <!-- Personal Information Section -->
 <div class="card mb-4">
     <div class="card-header bg-success text-white fw-bold">
@@ -294,6 +244,84 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                   <!-- Attendance -->
+                   <div style="background-color:#3cf048; width: 100%; padding: 10px; border-radius: 5px; text-align: center;margin-bottom:10px;margin-top:30px;">
+    <h6 style="margin: 0; color: black; font-weight: bold;">Attendance</h6>
+</div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Jun</th>
+                                    <th>Jul</th>
+                                    <th>Aug</th>
+                                    <th>Sep</th>
+                                    <th>Oct</th>
+                                    <th>Nov</th>
+                                    <th>Dec</th>
+                                    <th>Jan</th>
+                                    <th>Feb</th>
+                                    <th>Mar</th>
+                                    <th>Apr</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>No. of School Days</td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>No. of Days Present</td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control"/></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>No. of Days Absent</td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                    <td><input type="number" class="form-control" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
 
                 <!-- Additional Information Section -->
                 <div class="card mb-4">
@@ -592,19 +620,23 @@
     </div>
 </div>
 
-            </div>
-            <div class="modal-footer"> 
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600"
-        onclick="window.location.href='individual_counseling.php'">
-    <i class="bi bi-person-bounding-box"></i> Start Counseling
-</button>
-            </div>
-        </div>
-    </div>
+        
+
+
+<div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary me-2" onclick="window.location='student_profiling_teacher.php'">
+        Close
+    </button>
+    <button class="btn btn-primary" >
+        Edit
+    </button>
 </div>
 
-<script>
+
+</div>
+                    </main>
+    </div>
+    <script>
     // Toggle sidebar functionality
     const sidebar = document.getElementById('sidebar');
     const toggleSidebarBtn = document.getElementById('toggleSidebar');
@@ -615,11 +647,6 @@
         mainContent.classList.toggle('expanded');
     });
 </script>
-
-
-                    </main>
-    </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

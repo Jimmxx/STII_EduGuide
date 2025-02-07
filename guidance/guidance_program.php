@@ -138,7 +138,7 @@
         <aside class="sidebar h-screen relative" id="sidebar">
             <button class="toggle-sidebar-btn" id="toggleSidebar">&#9776;</button>
             <nav class="mt-6 space-y-4">
-                <a href="#" class="nav-item">
+                <a href="home_admin.php" class="nav-item">
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -158,16 +158,16 @@
                     <span class="nav-icon">📊</span>
                     <span class="nav-text">Guidance Program</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="ptc.php" class="nav-item">
                     <span class="nav-icon">👨‍👩‍👧‍👦</span>
                     <span class="nav-text">Parent & Teacher Communication</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="event.php" class="nav-item">
                     <span class="nav-icon">📅</span>
                     <span class="nav-text">Programs & Events</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">⚖️</span>
+                <a href="teacher.php" class="nav-item">
+                    <span class="nav-icon">🧑‍🏫</span>
                     <span class="nav-text">Teacher</span>
                 </a>
                 <!-- <a href="#" class="nav-item">
@@ -181,6 +181,10 @@
                 <a href="#" class="nav-item">
                     <span class="nav-icon">🛠️</span>
                     <span class="nav-text">Administrative Task</span>
+                </a>
+                <a href="#" class="nav-item settings">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-text">Reports</span>
                 </a>
                 <a href="#" class="nav-item">
                     <span class="nav-icon">⚙️</span>

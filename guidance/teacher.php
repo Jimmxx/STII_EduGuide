@@ -134,36 +134,36 @@
                     <span class="nav-icon">🗂️</span>
                     <span class="nav-text">Counseling</span>
                 </a>
-                <a href="#" class="nav-item">
+                <!-- <a href="#" class="nav-item">
                     <span class="nav-icon">📚</span>
                     <span class="nav-text">Academic & Career Planning</span>
-                </a>
+                </a> -->
                 <a href="guidance_program.php" class="nav-item">
                     <span class="nav-icon">📊</span>
                     <span class="nav-text">Guidance Program</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="ptc.php" class="nav-item">
                     <span class="nav-icon">👨‍👩‍👧‍👦</span>
                     <span class="nav-text">Parent & Teacher Communication</spa>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="event.php" class="nav-item">
                     <span class="nav-icon">📅</span>
                     <span class="nav-text">Programs & Events</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">⚖️</span>
+                <a href="teacher.php" class="nav-item">
+                    <span class="nav-icon">🧑‍🏫</span>
                     <span class="nav-text">Teacher</span>
-                </a>   <a href="#" class="nav-item">
+                <!-- </a>   <a href="#" class="nav-item">
                     <span class="nav-icon">⚠️</span>
                     <span class="nav-text">Crisis Management</span>
-                </a>
+                </a> -->
                 <a href="#" class="nav-item">
                     <span class="nav-icon">🛠️</span>
                     <span class="nav-text">Administrative Task</span>
                 </a>         
                     <a href="#" class="nav-item settings">
-                    <span class="nav-icon">⚙️</span>
-                    <span class="nav-text">Settings</span>
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-text">Reports</span>
                 </a>
                 <!-- <a href="#" class="nav-item">
                     <span class="nav-icon">🔗</span>
@@ -187,7 +187,7 @@
 
                 <!-- Add Teacher and Search Section -->
                 <div class="flex justify-between items-center mb-4">
-                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" data-bs-toggle="modal" data-bs-target="#addTeacherModal">Add Teacher</button>
+                    <button class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600" data-bs-toggle="modal" data-bs-target="#addTeacherModal"><i class="bi bi-plus-circle"></i>  Add Teacher</button>
                     <div class="flex items-center space-x-2">
                         <input type="text" placeholder="Search..." class="border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>

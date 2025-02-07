@@ -210,150 +210,94 @@
             </nav>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content bg-gray-50 p-6" id="mainContent">
-    <div class="max-w-4xl mx-auto">
-        <!-- Review Card -->
-        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-            <!-- Header Section -->
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <h1 class="text-2xl font-bold text-gray-800">Counseling Session Review</h1>
-                    <p class="text-gray-500">Session Date: May 15, 2024</p>
-                </div>
-                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Completed</span>
-            </div>
-
-            <!-- Student Information -->
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Student Details</h3>
-                    <dl class="space-y-1">
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Name:</dt>
-                            <dd class="font-medium">Dermosa Sarabi</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Course/Year:</dt>
-                            <dd class="font-medium">BSIT 3-A</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Student ID:</dt>
-                            <dd class="font-medium">2013-76546-CM-0</dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <!-- Session Details -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-lg text-gray-700 border-b pb-2">Session Details</h3>
-                    <dl class="space-y-1">
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Counselor:</dt>
-                            <dd class="font-medium">Warren Duran</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Duration:</dt>
-                            <dd class="font-medium">45 minutes</dd>
-                        </div>
-                        <div class="flex justify-between">
-                            <dt class="text-gray-500">Type:</dt>
-                            <dd class="font-medium">Individual Counseling</dd>
-                        </div>
-                    </dl>
-                </div>
-            </div>
-
-            <!-- Review Sections -->
-            <div class="space-y-6">
-                <!-- Background -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">1. Background of the Case</h3>
-                    <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">
-                        The student reported difficulties adjusting to online learning, experiencing increased anxiety 
-                        and decreased motivation. Academic performance has declined over the past two semesters.
-                    </p>
-                </div>
-
-                <!-- Counseling Plan -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">2. Counseling Plan</h3>
-                    <div class="bg-gray-50 p-4 rounded-lg space-y-3">
-                        <div>
-                            <p class="text-sm text-gray-500">Approach Used:</p>
-                            <p class="text-gray-600">Cognitive Behavioral Therapy</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Goals:</p>
-                            <p class="text-gray-600">Develop coping strategies for anxiety, create study schedule, 
-                            improve time management skills</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Comments -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">3. Session Comments</h3>
-                    <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">
-                        Student engaged well in session. Identified key stressors and created action plan. 
-                        Agreed to implement new study schedule and practice relaxation techniques daily.
-                    </p>
-                </div>
-
-                <!-- Recommendations -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">4. Recommendations</h3>
-                    <ul class="list-disc list-inside text-gray-600 bg-gray-50 p-4 rounded-lg space-y-2">
-                        <li>Follow up session in 2 weeks</li>
-                        <li>Implement structured study schedule</li>
-                        <li>Practice mindfulness exercises daily</li>
-                        <li>Consult with academic advisor for course load assessment</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex justify-end gap-4 mt-8">
-            <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg" onclick="window.location.href='individual_counseling.php'">Go back to Counseling</button>
-                <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                <i class="bi bi-printer"></i>
-                </button>
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-700" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                   Submit
-                </button>
-            </div>
-        </div>
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-800">Programs &amp; Events</h1>
+      <p class="text-gray-600 mt-1">Manage event details and records for workshops, attendance, and feedback.</p>
     </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <form>
+      <div class="space-y-8">
+        <!-- Workshop/Seminar Form Section -->
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Workshop/Seminar Form</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="eventName" class="block text-sm font-medium text-gray-700 mb-1">Event Name</label>
+              <input type="text" id="eventName" name="eventName" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Enter event name">
+            </div>
+            <div>
+              <label for="eventDate" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+              <input type="date" id="eventDate" name="eventDate" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+            </div>
+            <div>
+              <label for="speaker" class="block text-sm font-medium text-gray-700 mb-1">Speaker/Facilitator</label>
+              <input type="text" id="speaker" name="speaker" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Enter speaker/facilitator name">
+            </div>
+            <div>
+              <label for="targetAudience" class="block text-sm font-medium text-gray-700 mb-1">Target Audience</label>
+              <input type="text" id="targetAudience" name="targetAudience" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Enter target audience">
+            </div>
+            <div class="md:col-span-2">
+              <label for="keyTopics" class="block text-sm font-medium text-gray-700 mb-1">Key Topics</label>
+              <textarea id="keyTopics" name="keyTopics" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" rows="3" placeholder="Enter key topics"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attendance Form Section -->
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Attendance Form</h2>
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="participantNames" class="block text-sm font-medium text-gray-700 mb-1">Participant Names</label>
+              <textarea id="participantNames" name="participantNames" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" rows="3" placeholder="Enter participant names, separated by commas"></textarea>
+            </div>
+            <div>
+              <label for="engagementNotes" class="block text-sm font-medium text-gray-700 mb-1">Engagement/Feedback Notes</label>
+              <textarea id="engagementNotes" name="engagementNotes" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" rows="3" placeholder="Enter notes on engagement or feedback"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Form Section -->
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Feedback Form</h2>
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="eventRating" class="block text-sm font-medium text-gray-700 mb-1">Event Rating</label>
+              <select id="eventRating" name="eventRating" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                <option value="">Select rating</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+              </select>
+            </div>
+            <div>
+              <label for="feedbackComments" class="block text-sm font-medium text-gray-700 mb-1">Comments on Improvements</label>
+              <textarea id="feedbackComments" name="feedbackComments" class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200" rows="3" placeholder="Enter comments on improvements"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end gap-3">
+        <button type="button" class="px-6 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50" onclick="window.location='event.php'">Cancel</button>
+        <button type="button" class="px-6 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onclick="window.location='event_detail.php'">Submit</button>
+      </div>
+    </form>
+  </div>
 </main>
 
-<!--  Confirmation Modal -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Are you sure you want to submit?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p>Do you want to proceed?</p>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <a href="final_submit_counseling.php" class="btn btn-success">Yes, Submit</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Not Yet</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
 </div>
-<?php include 'view_modal.php' ;?>
+
 <script>
     // Toggle sidebar functionality
     const sidebar = document.getElementById('sidebar');
