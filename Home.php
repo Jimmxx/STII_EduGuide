@@ -1,459 +1,621 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STII EduGuide</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom Styles */
-        .dark-overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STII EduGuide</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-        .hero {
-            background: url('image/STII.jpg') no-repeat center center/cover;
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-left: 50px;
-        }
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+    }
+    /* Custom Styles */
+    .dark-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            max-width: 700px;
-        }
+    /* Updated Hero Section */
+    .hero {
+      background: url('image/STII.jpg') no-repeat center center/cover;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        header {
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .section {
-            padding: 50px 20px;
-        }
+    /* Updated Hero Content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem;
+      background: transparent;
+      border-radius: 1.5rem;
+      box-shadow: none;
+      backdrop-filter: none;
+      text-align: center;
+    }
 
-        .section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        /* Academics Section Styles */
-.academics {
-    padding: 50px 20px;
-    background-color: #e8f3fc;
-}
+    /* Light and Attractive Text for Hero Content */
+    .hero-content h1,
+    .hero-content p {
+      color: #ffffff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
 
-.academics-title {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #333;
-    text-transform: uppercase;
-}
+    /* Updated Button inside Hero Content */
+    .hero-content .btn-gradient {
+      background-image: linear-gradient(to right, var(--primary), var(--secondary));
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+    }
+    .hero-content .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    }
 
-.academics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.academics-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.academics-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.academics-card img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.academics-card h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0056b3;
-    margin-bottom: 15px;
-}
-
-.academics-card p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-}
-/* Laboratory Section Styles */
-.laboratory {
-    padding: 50px 20px;
-    background-color: #f5f5f5; /* Light gray background */
-}
-
-.laboratory-title {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #333;
-    text-transform: uppercase;
-}
-
-.laboratory-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.activity-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.activity-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.activity-card img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-    border-radius: 8px;
-}
-
-.activity-card h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #0056b3;
-    margin-top: 10px;
-    text-transform: uppercase;
-}
-/* Contact Section */
-.contact-section {
-    background-color: #a6cbd8; /* Light teal background */
-    padding: 50px 20px;
-    color: white;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: start;
-}
-
-.contact-info h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.contact-info p {
-    margin: 10px 0;
-    font-size: 1rem;
-}
-
-.contact-form .form-group {
-    margin-bottom: 20px;
-}
-
-.contact-form label {
-    font-size: 1rem;
-    margin-left: 5px;
-    color: white;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #d9ebf2;
-    font-size: 1rem;
-    color: #333;
-}
-
-.contact-form textarea {
-    resize: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: 2px solid #007bff;
-}
-
-/* Checkbox Alignment */
-.checkbox-label {
-    display: flex;
-    align-items: center; /* Ensures checkbox and text align on the same line */
-    gap: 10px; /* Space between checkbox and text */
-    font-size: 0.9rem;
-    color: white;
-}
-
-.checkbox-label a {
-    color: #007bff;
-    text-decoration: underline;
-}
-
-.btn-submit {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.btn-submit:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+    header {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .section {
+      padding: 50px 20px;
+    }
+    .section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    /* Academics Section Styles */
+    .academics {
+      padding: 50px 20px;
+      background-color: #e8f3fc;
+    }
+    .academics-title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+      text-transform: uppercase;
+    }
+    .academics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .academics-card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .academics-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    .academics-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    .academics-card h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #0056b3;
+      margin-bottom: 15px;
+    }
+    .academics-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+    /* Laboratory Section Styles */
+    .laboratory {
+      padding: 50px 20px;
+      background-color: #f5f5f5;
+    }
+    .laboratory-title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+      text-transform: uppercase;
+    }
+    .laboratory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .activity-card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .activity-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    .activity-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    .activity-card h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #0056b3;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+    /* Contact Section */
+    .contact-section {
+      background-color: #a6cbd8;
+      padding: 50px 20px;
+      color: white;
+    }
     .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .contact-info p {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+    .contact-form .form-group {
+      margin-bottom: 20px;
+    }
+    .contact-form label {
+      font-size: 1rem;
+      margin-left: 5px;
+      color: white;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #d9ebf2;
+      font-size: 1rem;
+      color: #333;
+    }
+    .contact-form textarea {
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid #007bff;
+    }
+    /* Checkbox Alignment */
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: white;
+    }
+    .checkbox-label a {
+      color: #007bff;
+      text-decoration: underline;
+    }
+    .btn-submit {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-submit:hover {
+      background-color: #0056b3;
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-grid {
         grid-template-columns: 1fr;
-    }
-}
-
-@media (min-width: 768px) {
-    #navbarLinks {
-        flex-direction: row; /* Links inline on desktop */
-        position: static; /* Static for desktop */
-        background-color: transparent;
-        display: flex !important; /* Always visible */
-        margin-left: auto; /* Align links to the right */
-    }
-
-    #navbarLinks a,
-    #navbarLinks button {
-        width: auto;
-        padding: 0;
-        border-bottom: none;
-    }
-}
-
-
-/* Desktop Layout (Visible always for larger screens) */
-@media (min-width: 768px) {
-    #navbarLinks {
-        display: flex !important; /* Always visible on larger screens */
-        flex-direction: row; /* Inline links */
-        background-color: transparent;
-        position: static; /* No fixed positioning */
-    }
-
-    #navbarLinks a,
-    #navbarLinks button {
-        padding: 0;
-        width: auto;
-        border: none;
-        text-align: left;
-    }
-}
-
-/* Mobile Layout (Hidden links and hamburger menu visible) */
-@media (max-width: 767px) {
-    #navbarLinks {
-        display: none; /* Initially hidden for mobile */
+      }
+      /* Mobile Navigation Styles */
+      #navbarLinks {
+        background: rgba(0, 0, 0, 0.7);
+        display: none; /* Hidden by default */
         flex-direction: column;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.9); /* Dropdown background */
-        position: fixed;
-        top: 0;
-        left: 0;
+        padding-top: 60px; /* Space for mobile nav */
+      }
+      #navbarLinks.show {
+        display: flex !important;
+      }
+      #navbarLinks a,
+      #navbarLinks button {
         width: 100%;
-        height: 100%;
-        z-index: 1000;
-        padding-top: 20px;
-    }
-
-    #navbarLinks.show {
-        display: flex !important; /* Display dropdown on toggle */
-    }
-
-    #navbarLinks a,
-    #navbarLinks button {
-        color: white;
-        padding: 10px 20px;
         text-align: center;
-        width: 100%; /* Full width for dropdown items */
-        border-bottom: 1px solid #444; /* Add dividers between items */
+        padding: 10px 20px;
+        border-bottom: 1px solid #444;
+      }
+      #navbarLinks a:hover,
+      #navbarLinks button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
     }
-
-    #navbarLinks a:hover,
-    #navbarLinks button:hover {
-        background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+    @media (min-width: 768px) {
+      #navbarLinks {
+        flex-direction: row;
+        position: static;
+        background-color: transparent;
+        display: flex !important;
+        margin-left: auto;
+      }
+      #navbarLinks a,
+      #navbarLinks button {
+        width: auto;
+        padding: 0;
+        border: none;
+        text-align: left;
+      }
     }
-}
-
-/* Hamburger Button Styling */
-#hamburgerBtn {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-    </style>
+    /* Desktop Dropdown Styling */
+    @media (min-width: 768px) {
+      .dropdown-menu {
+        background: white !important;
+      }
+      .dropdown-menu a {
+        color: #333 !important;
+      }
+      .dropdown-menu a:hover {
+        background: #f8f9fa !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const hamburgerBtn = document.getElementById("hamburgerBtn");
-    const navbarLinks = document.getElementById("navbarLinks");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      const navbarLinks = document.getElementById("navbarLinks");
+      const closeMenuBtn = document.getElementById("closeMenuBtn");
 
-    hamburgerBtn.addEventListener("click", () => {
-        navbarLinks.classList.toggle("show"); // Toggles the visibility of the menu
+      // Toggle mobile menu on burger button click
+      hamburgerBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbarLinks.classList.toggle("show");
+      });
+
+      // Close mobile menu when clicking the close button
+      closeMenuBtn.addEventListener("click", () => {
+        navbarLinks.classList.remove("show");
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!navbarLinks.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+          navbarLinks.classList.remove("show");
+        }
+      });
+
+      // Close mobile menu when any link inside the menu is clicked
+      document.querySelectorAll('#navbarLinks a').forEach(link => {
+        link.addEventListener('click', () => {
+          navbarLinks.classList.remove("show");
+        });
+      });
+
+      // Prevent dropdown click propagation (if using Alpine.js for dropdowns)
+      document.querySelectorAll('.dropdown-menu').forEach(item => {
+        item.addEventListener('click', e => e.stopPropagation());
+      });
     });
-});
-</script>
-<header class="fixed top-0 left-0 w-full text-white flex justify-between items-center px-6 py-4 z-50 ">
-    <!-- Logo -->
-    <div class="text-xl font-bold text-blue-600"><i class="bi bi-mortarboard-fill mr-2"></i>STII EduGuide</div>
+  </script>
 
-    <!-- Hamburger Menu (Visible in Mobile) -->
+  <header class="fixed top-0 left-0 w-full text-white flex justify-between items-center px-6 py-4 z-50">
+    <!-- Logo -->
+    <div>
+      <img src="image/2.png" alt="STII EduGuide Logo" class="h-10" />
+    </div>
+
+    <!-- Hamburger Menu (Visible on Mobile) -->
     <button
-        id="hamburgerBtn"
-        class="flex md:hidden text-white text-3xl focus:outline-none"
-        aria-label="Toggle Navigation"
+      id="hamburgerBtn"
+      class="flex md:hidden text-white text-3xl focus:outline-none"
+      aria-label="Toggle Navigation"
     >
-        &#9776;
+      &#9776;
     </button>
 
     <!-- Navigation Links -->
-<!-- Navigation Bar -->
-<nav
-    id="navbarLinks"
-    class="hidden md:flex items-center space-x-4 md:bg-transparent md:relative fixed top-0 left-0 w-full md:w-auto h-full md:h-auto flex-col md:flex-row md:space-y-0 space-y-4 pt-20 md:pt-0"
->
-    <a href="#home" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">Home</a>
-
-    <!-- Dropdown Wrapper -->
-    <div x-data="{ open: false }" class="relative">
-        <!-- Dropdown Trigger -->
-        <button 
-            @click="open = !open" 
-            class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded flex items-center"
+    <nav
+      id="navbarLinks"
+      class="hidden md:flex items-center space-x-4 md:bg-transparent md:relative fixed top-0 left-0 w-full md:w-auto h-full md:h-auto flex-col md:flex-row md:space-y-0 space-y-4 pt-20 md:pt-0"
+    >
+      <!-- Navigation Items -->
+      <a href="#home" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">Home</a>
+      
+      <!-- Programs Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button
+          @click="open = !open"
+          class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded flex items-center"
         >
-            Programs
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
+          Programs
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
         </button>
-
-        <!-- Dropdown Menu -->
-        <div 
-            x-show="open" 
-            @click.away="open = false" 
-            class="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md py-2 z-10"
+        <div
+          x-show="open"
+          @click.away="open = false"
+          class="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md py-2 z-10"
         >
-            <a href="#strand" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Strand</a>
-            <a href="#courses" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Courses</a>
+          <a href="strand.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Strand</a>
+          <a href="course.php" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Courses</a>
         </div>
-    </div>
+      </div>
 
-    <a href="#laboratory" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">Activities</a>
-    <a href="#about" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">About Us</a>
-    <a href="#contact" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">Contact</a>
+      <a href="#laboratory" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">Activities</a>
+      <a href="#about" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">About Us</a>
+      <a href="#contact" class="hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded">Contact</a>
 
-    <button
+      <button
         class="login bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
         data-bs-toggle="modal"
         data-bs-target="#loginModal"
-    >
+      >
         Login
-    </button>
-</nav>
+      </button>
+      
+      <!-- New Mobile Close Button Below the Login Button -->
+      <button
+        id="closeMenuBtn"
+        class="md:hidden mt-4 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+      >
+        Close Menu
+      </button>
+    </nav>
+    <!-- Alpine.js for Dropdown (if needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  </header>
 
-<!-- Alpine.js for Dropdown -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-</header>
+<!-- Modern Hero Section -->
+<div class="hero" id="home">
+    <div class="dark-overlay"></div>
+    <div class="hero-content">
+        <h1 class="text-5xl font-bold mb-6 ">Build Your Future With Us</h1>
+        <p class="text-xl text-gray-600 mb-8">Discover the best academic path for you with our personalized assessment</p>
+        <button class="btn-gradient" data-bs-toggle="modal" data-bs-target="#takeAssessmentModal">
+            Start Free Assessment
+        </button>
+    </div>
+</div>
 
-    <!-- Hero Section -->
-    <div class="hero" id="home">
-        <div class="dark-overlay"></div>
-        <div class="hero-content">
-            <h1 class="text-4xl font-bold" style="font-size:65px;">Join Us</h1>
-            <h2 class="text-4xl" style="margin-top: 10px;">The School That Cares For Your Future</h2>
-            <p class="text-lg" style="font-size: 20px;">Get Ready for Your Future! 🎓 Take the assessment and find the perfect strand and course for you!</p>
-            <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded shadow" data-bs-toggle="modal" data-bs-target="#takeAssessmentModal" style="margin-top: 10px;">Take the Assessment</button>
-        </div>
+<!-- STII EduGuide Description Section -->
+<section class="py-16 bg-gray-50" id="eduguide">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6">About STII EduGuide</h2>
+      <p class="text-lg text-gray-600">
+      STII EduGuide is an innovative educational initiative developed by BSIT students from the College of Computer Studies at Sibugay Technical Institute Incorporation to help students navigate their academic journey. Our intelligent assessment system combines educational research with cutting-edge technology to provide personalized career path recommendations.      </p>
     </div>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-xl font-bold" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="bg-white p-8 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">Key Features</h3>
+        <ul class="space-y-4">
+          <li class="flex items-center">
+            <i class="bi bi-person-badge text-blue-500 text-xl mr-3"></i>
+            Personalized career assessments
+          </li>
+          <li class="flex items-center">
+            <i class="bi bi-graph-up text-green-500 text-xl mr-3"></i>
+            Skill gap analysis
+          </li>
+          <li class="flex items-center">
+            <i class="bi bi-book text-purple-500 text-xl mr-3"></i>
+            Course recommendations
+          </li>
+          <li class="flex items-center">
+            <i class="bi bi-briefcase text-orange-500 text-xl mr-3"></i>
+            Career pathway mapping
+          </li>
+        </ul>
+      </div>
+      <img src="image/eduguide-process.jpg" alt="EduGuide Process" class="rounded-xl shadow-lg">
+    </div>
+  </div>
+</section>
+
+<!-- School History Section -->
+<section class="py-16 bg-white" id="history">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-12">Our History & Legacy</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="space-y-6">
+          <div class="bg-blue-50 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-3">Founded in 1997</h3>
+            <p class="text-gray-600">
+              Established as a technical vocational institute in Ipil, Zamboanga Sibugay, STII has grown from a small training center to a comprehensive educational institution serving thousands of students annually.
+            </p>
+          </div>
+          <div class="bg-green-50 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-3">TESDA Recognition</h3>
+            <p class="text-gray-600">
+              Accredited by the Technical Education and Skills Development Authority (TESDA) since 2001, offering quality technical-vocational programs.
+            </p>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-yellow-50 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-3">Expansion</h3>
+            <p class="text-gray-600">
+              Expanded to offer senior high school programs in 2016 under the K-12 system, followed by college degree programs in 2019.
+            </p>
+          </div>
+          <div class="bg-purple-50 p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-3">Awards</h3>
+            <p class="text-gray-600">
+              Recipient of multiple regional awards for technical education excellence and community development initiatives.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Campus Facilities Section -->
+<section class="py-16 bg-gray-100" id="campus">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">Campus Facilities</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <img src="image/computer-lab.jpg" alt="Computer Lab" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Technology Labs</h3>
+          <p class="text-gray-600">State-of-the-art computer laboratories with latest software and hardware</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <img src="image/library.jpg" alt="Library" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Learning Resource Center</h3>
+          <p class="text-gray-600">Comprehensive library with digital resources and study spaces</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <img src="image/workshop.jpg" alt="Workshop" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Technical Workshops</h3>
+          <p class="text-gray-600">Fully-equipped workshops for hands-on technical training</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="py-16 bg-blue-800 text-white" id="mission">
+  <div class="container mx-auto px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold mb-8">Our Core Values</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white bg-opacity-10 p-8 rounded-xl">
+          <h3 class="text-2xl font-semibold mb-4">Mission</h3>
+          <p class="text-gray-200">
+            To provide quality technical education and training that produces competent graduates equipped with practical skills and moral values for global competitiveness.
+          </p>
+        </div>
+        <div class="bg-white bg-opacity-10 p-8 rounded-xl">
+          <h3 class="text-2xl font-semibold mb-4">Vision</h3>
+          <p class="text-gray-200">
+            To be the leading technical-vocational institution in Mindanao recognized for producing highly skilled professionals and entrepreneurs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Modern Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold">Welcome Back</h3>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex gap-3 mb-4">
+                    <button class="btn btn-outline-primary flex-grow-1">
+                        <i class="bi bi-google me-2"></i>Google
+                    </button>
+                    <button class="btn btn-outline-primary flex-grow-1">
+                        <i class="bi bi-facebook me-2"></i>Facebook
+                    </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                                        <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" style="margin-top: 15px;">
-                    <label for="floatingInput">Email address</label>
+                
+                <div class="divider my-4">OR</div>
+                
+                <form>
+                    <div class="mb-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter your email">
                     </div>
-                    <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="margin-bottom: 20px;">
-                    <label for="floatingPassword">Password</label>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="••••••••">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                     </div>
-                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">Sign in</button>
-                    </form>
+                    <button class="btn-gradient w-100">Sign In</button>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <p class="text-muted">Don't have an account? <a href="#" class="text-primary" id="registerForFreeLink">Create account</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced Assessment Modal -->
+<div class="modal fade" id="takeAssessmentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-5">
+                <div class="mb-4">
+                    <div class="icon-lg bg-primary text-white rounded-circle d-inline-flex mb-3">
+                        <i class="bi bi-clipboard-check fs-4"></i>
+                    </div>
+                    <h3 class="mb-3">Ready to Discover Your Path?</h3>
+                    <p class="text-muted">Please sign in to start your personalized assessment</p>
                 </div>
-                <div class="modal-footer text-center">
-                    <p>Don't have an account yet? <a href="#" class="text-blue-600 hover:underline" id="registerForFreeLink">Register for free</a></p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Later</button>
+                    <button class="btn-gradient" data-bs-target="#loginModal" data-bs-toggle="modal">
+                        Sign In Now
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Take Assessment Modal -->
-    <div class="modal fade" id="takeAssessmentModal" tabindex="-1" aria-labelledby="takeAssessmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-xl font-bold" id="takeAssessmentModalLabel">Alert</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <p>You need to log in first to take the assessment.</p>
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Go to Login</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+</div>
     <!-- Sign-Up Modal -->
     <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -661,5 +823,11 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = 'home_assessment.php';
         });
     </script>
+        <!-- Footer -->
+        <footer class="bg-white/80 backdrop-blur-sm text-center py-6 mt-12">
+        <p class="text-sm text-gray-600">
+            ✨ Made with ❤️ by STII EduGuide • © 2025 ✨
+        </p>
+    </footer>
 </body>
 </html>

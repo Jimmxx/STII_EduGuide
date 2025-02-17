@@ -39,19 +39,7 @@ $result_prev = $stmt_prev->get_result();
 $prevSchool = $result_prev->fetch_assoc();
 $stmt_prev->close();
 
-// **************************************
-// Fetch student grades from student_grades
-// **************************************
-$sql_grades = "SELECT subject, q1, q2, q3, q4, final_rating, gen_ave, remarks FROM student_grades WHERE student_id = ?";
-$stmt_grades = $conn->prepare($sql_grades);
-$stmt_grades->bind_param("i", $student_id);
-$stmt_grades->execute();
-$result_grades = $stmt_grades->get_result();
-$grades = $result_grades->fetch_all(MYSQLI_ASSOC);
-$stmt_grades->close();
-
-
-// --- 5. Determine which card to show based on grade_level ---
+// --- Determine which card to show based on grade_level ---
 $grade_level = strtoupper(trim($student['grade_level']));
 $cardType = ''; // will be 'junior', 'senior', or 'college'
 
@@ -70,6 +58,25 @@ if (strpos($grade_level, 'GRADE') !== false) {
 if (empty($cardType)) {
     die('Grade level format not recognized.');
 }
+
+// Fetch student grades based on cardType
+if ($cardType === 'college') {
+    // For college, fetch from student_grades_college
+    $sql_grades = "SELECT * FROM student_grades_college WHERE student_id = ?";
+} elseif ($cardType === 'senior') {
+    // For senior, fetch from student_grades_senior
+    $sql_grades = "SELECT * FROM student_grades_senior WHERE student_id = ?";
+} else {
+    // For junior, fetch from student_grades
+    $sql_grades = "SELECT subject, q1, q2, q3, q4, final_rating, gen_ave, remarks FROM student_grades WHERE student_id = ?";
+}
+$stmt_grades = $conn->prepare($sql_grades);
+$stmt_grades->bind_param("i", $student_id);
+$stmt_grades->execute();
+$result_grades = $stmt_grades->get_result();
+$grades = $result_grades->fetch_all(MYSQLI_ASSOC);
+$stmt_grades->close();
+
 $conn->close();
 
 // Calculate the student's age from birthdate
@@ -77,6 +84,8 @@ $dob = new DateTime($student['birthdate']);
 $today = new DateTime();
 $age = $today->diff($dob)->y;
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,6 +172,26 @@ $age = $today->diff($dob)->y;
     .main-content {
       animation: fadeIn 0.8s ease-out forwards;
     }
+    @keyframes slightPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.5);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 5px rgba(255, 193, 7, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
+
+.pulse-animation {
+  animation: slightPulse 2s infinite;
+  border: 2px dashed #ffc107;
+}
+
   </style>
 </head>
 <body class="bg-gray-100">
@@ -484,8 +513,15 @@ $age = $today->diff($dob)->y;
   </div>
 </div>
 
+      
+
+
+
+
+
 <!-- Documents Section -->
-<div class="card mb-4">
+<?php if ($student['card_status'] == 1): ?>
+<div class="card mb-4" id="havecard">
     <div class="card-header bg-success text-white fw-bold">
         Student Card
     </div>
@@ -493,7 +529,6 @@ $age = $today->diff($dob)->y;
         <!-- Enter Grades Button - Right aligned -->
         <h1 class="mb-3">Student Grades Details</h1>
   <div class="mb-3">
-    <strong>Name:</strong> <?php echo htmlspecialchars($student['s_lname']); ?><br>
     <strong>Grade Level:</strong> <?php echo htmlspecialchars($student['grade_level']); ?>
   </div>
 
@@ -544,7 +579,19 @@ $age = $today->diff($dob)->y;
                 <tfoot>
                     <tr>
                         <th colspan="5">General Average</th>
-                        <th colspan="2"><?php echo htmlspecialchars($lastGenAve); ?></th>
+                        <th><?php 
+if (!empty($lastGenAve)) {
+    $avg = floatval($lastGenAve);
+    if ($avg >= 75) {
+         echo '<span style="color: green;">Passed  ' . number_format($avg, 2) . '</span>';
+    } else {
+         echo '<span style="color: red;">Failed ' . number_format($avg, 2) . '</span>';
+    }
+} else {
+    echo "N/A";
+}
+?>
+</th>
                     </tr>
                 </tfoot>
                 <?php endif; ?>
@@ -554,124 +601,284 @@ $age = $today->diff($dob)->y;
 <?php endif; ?>
 
 <?php if ($cardType === 'senior'): ?>
+    <!-- Senior High School Card - First Semester -->
     <div class="card mb-4">
         <div class="card-header bg-primary text-white fw-bold">
-            Senior High School Card
+            Senior High School Card - First Semester
         </div>
         <div class="card-body">
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>Subjects</th>
-                        <th>Quarter 1</th>
-                        <th>Quarter 2</th>
-                        <th>Quarter 3</th>
-                        <th>Quarter 4</th>
-                        <th>Semester Final Grade</th>
+                        <th>Subject</th>
+                        <th>Unit</th>
+                        <th>Prelim</th>
+                        <th>Midterm</th>
+                        <th>Prefinal</th>
+                        <th>Final Grade</th>
                         <th>Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    $lastGenAve = '';
-                    if (count($grades) > 0): 
-                        foreach ($grades as $row): 
-                            $lastGenAve = $row['gen_ave']; 
-                    ?>
+                    <?php if (count($grades) > 0): ?>
+                        <?php foreach ($grades as $row): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($row['subject']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q1']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q2']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q3']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q4']); ?></td>
-                                <td><?php echo htmlspecialchars($row['final_rating']); ?></td>
+                                <td><?php echo htmlspecialchars($row['unit']); ?></td>
+                                <td><?php echo htmlspecialchars($row['prelim']); ?></td>
+                                <td><?php echo htmlspecialchars($row['midterm']); ?></td>
+                                <td><?php echo htmlspecialchars($row['prefinal']); ?></td>
+                                <td><?php echo htmlspecialchars($row['final_ave']); ?></td>
                                 <td><?php echo htmlspecialchars($row['remarks']); ?></td>
                             </tr>
-                    <?php 
-                        endforeach; 
-                    else: 
-                    ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
                             <td colspan="7">No grades found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
-                <?php if (!empty($lastGenAve)): ?>
                 <tfoot>
                     <tr>
-                        <th colspan="5">General Average for the Semester</th>
-                        <th colspan="2"><?php echo htmlspecialchars($lastGenAve); ?></th>
+                        <th>General Average</th>
+                        <th colspan="4"></th>
+                        <th>
+                            <?php 
+                                if (count($grades) > 0) {
+                                    $avg = floatval($grades[0]['gen_ave']);
+                                    if ($avg >= 75) {
+                                        echo '<span style="color: green;">Passed ' . number_format($avg, 2) . '</span>';
+                                    } else {
+                                        echo '<span style="color: red;">Failed ' . number_format($avg, 2) . '</span>';
+                                    }
+                                } else {
+                                    echo "N/A";
+                                }
+                            ?>
+                        </th>
                     </tr>
                 </tfoot>
-                <?php endif; ?>
             </table>
         </div>
     </div>
-<?php endif; ?>
 
-<?php if ($cardType === 'college'): ?>
+    <!-- Senior High School Card - Second Semester -->
     <div class="card mb-4">
-        <div class="card-header bg-warning text-dark fw-bold">
-            College Card
+        <div class="card-header bg-primary text-white fw-bold">
+            Senior High School Card - Second Semester
         </div>
         <div class="card-body">
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>Subjects</th>
-                        <th>Quarter 1</th>
-                        <th>Quarter 2</th>
-                        <th>Quarter 3</th>
-                        <th>Quarter 4</th>
+                        <th>Subject</th>
+                        <th>Unit</th>
+                        <th>Prelim</th>
+                        <th>Midterm</th>
+                        <th>Prefinal</th>
+                        <th>Final Grade</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($grades) > 0): ?>
+                        <?php foreach ($grades as $row): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['subject1']); ?></td>
+                                <td><?php echo htmlspecialchars($row['unit1']); ?></td>
+                                <td><?php echo htmlspecialchars($row['prelim1']); ?></td>
+                                <td><?php echo htmlspecialchars($row['midterm1']); ?></td>
+                                <td><?php echo htmlspecialchars($row['prefinal1']); ?></td>
+                                <td><?php echo htmlspecialchars($row['final_ave1']); ?></td>
+                                <td><?php echo htmlspecialchars($row['remarks1']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7">No grades found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>General Average</th>
+                        <th colspan="4"></th>
+                        <th>
+                            <?php 
+                                if (count($grades) > 0) {
+                                    $avg = floatval($grades[0]['gen_ave1']);
+                                    if ($avg >= 75) {
+                                        echo '<span style="color: green;">Passed ' . number_format($avg, 2) . '</span>';
+                                    } else {
+                                        echo '<span style="color: red;">Failed ' . number_format($avg, 2) . '</span>';
+                                    }
+                                } else {
+                                    echo "N/A";
+                                }
+                            ?>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+<?php endif; ?>
+
+
+<?php if ($cardType === 'college'): ?>
+    <!-- College Card - First Semester -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark fw-bold">
+            College Card - First Semester
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Unit</th>
+                        <th>Prelim</th>
+                        <th>Midterm</th>
+                        <th>Prefinal</th>
                         <th>Final Grade</th>
                         <th>Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
-                    $lastGenAve = '';
                     if (count($grades) > 0): 
                         foreach ($grades as $row): 
-                            $lastGenAve = $row['final_rating']; // Assuming final_rating is the general average in college
                     ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($row['subject']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q1']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q2']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q3']); ?></td>
-                                <td><?php echo htmlspecialchars($row['q4']); ?></td>
-                                <td><?php echo htmlspecialchars($row['final_rating']); ?></td>
-                                <td><?php echo htmlspecialchars($row['remarks']); ?></td>
-                            </tr>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                            <td><?php echo htmlspecialchars($row['unit']); ?></td>
+                            <td><?php echo htmlspecialchars($row['prelim']); ?></td>
+                            <td><?php echo htmlspecialchars($row['midterm']); ?></td>
+                            <td><?php echo htmlspecialchars($row['prefinal']); ?></td>
+                            <td><?php echo htmlspecialchars($row['final_ave']); ?></td>
+                            <td><?php echo htmlspecialchars($row['remarks']); ?></td>
+                        </tr>
                     <?php 
                         endforeach; 
                     else: 
                     ?>
                         <tr>
-                            <td colspan="7">No grades found.</td>
+                            <td colspan="8">No grades found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
-                <?php if (!empty($lastGenAve)): ?>
                 <tfoot>
                     <tr>
-                        <th colspan="5">General Average</th>
-                        <th colspan="2"><?php echo htmlspecialchars($lastGenAve); ?></th>
+                        <th >General Average</th>
+                        <th colspan="4"></th>
+                        <th>
+    <?php 
+        if (count($grades) > 0) {
+            $avg = floatval($grades[0]['gen_ave']);
+            if ($avg >= 75) {
+                echo '<span style="color: green;">Passed  ' . number_format($avg, 2) . '</span>';
+            } else {
+                echo '<span style="color: red;">Failed  ' . number_format($avg, 2) . '</span>';
+            }
+        } else {
+            echo "N/A";
+        }
+    ?>
+</th>
+
                     </tr>
                 </tfoot>
-                <?php endif; ?>
+            </table>
+        </div>
+    </div>
+
+    <!-- College Card - Second Semester -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark fw-bold">
+            College Card - Second Semester
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Unit</th>
+                        <th>Prelim</th>
+                        <th>Midterm</th>
+                        <th>Prefinal</th>
+                        <th>Final Grade</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    if (count($grades) > 0): 
+                        foreach ($grades as $row): 
+                    ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['subject1']); ?></td>
+                            <td><?php echo htmlspecialchars($row['unit1']); ?></td>
+                            <td><?php echo htmlspecialchars($row['prelim1']); ?></td>
+                            <td><?php echo htmlspecialchars($row['midterm1']); ?></td>
+                            <td><?php echo htmlspecialchars($row['prefinal1']); ?></td> 
+                            <td><?php echo htmlspecialchars($row['final_ave1']); ?></td>
+                            <td><?php echo htmlspecialchars($row['remarks1']); ?></td>
+                        </tr>
+                    <?php 
+                        endforeach; 
+                    else: 
+                    ?>
+                        <tr>
+                            <td colspan="8">No grades found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>General Average</th>
+                        <th colspan="4"></th>
+                        <th>
+                        <?php 
+        if (count($grades) > 0) {
+            $avg = floatval($grades[0]['gen_ave1']);
+            if ($avg >= 75) {
+                echo '<span style="color: green;">Passed  ' . number_format($avg, 2) . '</span>';
+            } else {
+                echo '<span style="color: red;">Failed  ' . number_format($avg, 2) . '</span>';
+            }
+        } else {
+            echo "N/A";
+        }
+    ?>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 <?php endif; ?>
 
 
+<?php else: ?>
+<!-- Documents Section with Pulse Animation -->
+<div class="card mb-4 pulse-animation" id="nocard">
+  <div class="card-header bg-warning text-white fw-bold">
+    Student Card
+  </div>
+  <div class="card-body">
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-danger" href="example2.php?id=<?php echo $student_id; ?>">Add Student Grades</a>
+    </div>
+  </div>
+</div>
+
+  <?php endif; ?>
         <div class="d-flex justify-content-end">
           <button type="button" class="btn btn-secondary me-2" onclick="window.location='student_profiling_teacher.php'">
             Close
           </button>
           <button type="button" class="btn btn-primary" onclick="window.location='student_editDetails.php?id=<?php echo $student_id; ?>'">
-  Edit
+  Edit Student Info
 </button>        </div>
       </div>
     </main>

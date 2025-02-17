@@ -8,81 +8,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #FFEB3B;
-            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            padding-top: 150px;
+            max-width: 1200px;
+            padding: 100px 20px 20px;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: bold;
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 60px;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
+        .wave {
+            animation: wave-animation 2s infinite;
+            margin-bottom: 1rem;
+            font-size: 3.5rem;
         }
 
         .btn-custom {
-            width: 300px;
-            height: 60px;
-            margin: 0;
-            border: 2px solid black;
-            background-color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
+            background: white;
+            border: 2px solid #0d6efd;
+            color: #0d6efd;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .btn-custom:hover {
-            background-color: #f1f1f1;
+            background: #0d6efd;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
 
-        header img {
-            margin: 20px auto;
+        .btn-custom:active {
+            transform: translateY(0);
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logout {
-            font-size: 16px;
-            position: absolute;
-            right: 50px;
-            top: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
-        }
-
-        .logout:hover {
-            color: #555;
-        }
-
-        /* Waving Hand Animation */
-        .wave {
-            font-size: 3rem;
-            display: inline-block;
-            animation: wave-animation 2s infinite;
-            margin-bottom: 20px;
+        .profile-pic {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #0d6efd;
+            border-radius: 50%;
         }
 
         @keyframes wave-animation {
@@ -95,88 +69,75 @@
             60% { transform: rotate(0deg); }
             100% { transform: rotate(0deg); }
         }
-        body {
-            background-color:skyblue;
-            font-family: Arial, sans-serif;
-        }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 40px;
-            background-color: transparent; /* Transparent navbar */
-            color: black; /* Black text for navbar */
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 10;
-        }
+        @media (max-width: 768px) {
+            .container {
+                padding-top: 80px;
+            }
+            
+            .btn-custom {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
 
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+            .wave {
+                font-size: 2.5rem;
+            }
 
-        .header-left h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
+            .header h1 {
+                font-size: 1.2rem;
+            }
 
-        .back-arrow {
-            font-size: 1rem;
-            color: black; /* Black color for back link */
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            margin-left: 5px; /* Adjusted position for better visibility */
+            .profile-pic {
+                width: 30px;
+                height: 30px;
+            }
         }
-
-        .back-arrow:hover {
-            text-decoration: underline;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid black; /* Black border for profile picture */
-            object-fit: cover;
-        }
-
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="header-left">
-        <h1><a href="home_assessment.php" style="text-decoration:none;color:black;"> STII EduGuide</a></h1>
-        </div>
-        <div class="header-right">
-            <img src="image/profile.jpg" alt="Profile Picture" class="profile-pic">
-            <span>User Name</span>
-        </div>
+
+<!-- Header (Fixed and Corrected for Bootstrap) -->
+<header class="fixed-top bg-primary text-white d-flex justify-content-between align-items-center px-4 py-3">
+    <!-- Logo -->
+    <div>
+        <img src="image/2.png" alt="STII EduGuide Logo" style="height: 40px;">
+    </div>
+    <!-- Profile Section -->
+    <div class="d-flex align-items-center gap-3">
+        <img src="image/profile.jpg" alt="Profile" class="profile-pic">
+        <span class="d-none d-md-inline text-sm">User Name</span>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="text-center mb-5">
+        <div class="wave">👋</div>
+        <h1 class="display-5 fw-bold mb-3">Hi there!</h1>
+        <p class="lead text-muted mb-4">Let's get started by selecting your current educational status</p>
     </div>
 
-    <!-- Content -->
-    <div class="container">
-        <div class="wave">👋</div>
-        <h1>Hi there,</h1>
-        <h2>Before we begin, pick which describes you best</h2>
-        <div class="btn-container">
-            <button class="btn btn-custom" onclick="location.href='instruction.php'">Incoming Senior High School Student</button>
-            <button class="btn btn-custom">Incoming College Student</button>
-            <button class="btn btn-custom">None of the Above</button>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <button class="btn btn-custom w-100" onclick="location.href='instruction.php'">
+                Incoming Senior High School Student
+            </button>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <button class="btn btn-custom w-100" onclick="location.href='college_assessment/instructioncol.php'">
+                Incoming College Student
+            </button>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <button class="btn btn-custom w-100" onclick="location.href='other.php'">
+                None of the Above
+            </button>
         </div>
     </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

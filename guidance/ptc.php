@@ -83,12 +83,13 @@
     <!-- Navbar -->
     <header class="bg-white shadow p-4 flex justify-between items-center">
     <h1 class="text-xl font-bold text-blue-600 flex items-center">
-            <i class="bi bi-mortarboard-fill mr-2"></i>STII EduGuide
-        </h1>        <div class="flex items-center space-x-4">
-            <span class="text-gray-800 font-medium">Warren Duran</span>
-            <img src="https://via.placeholder.com/40" alt="Profile Picture" class="w-10 h-10 rounded-full border-2 border-green-600">
-        </div>
-    </header>
+        <img src="images/logostiiq.png" alt="STII EduGuide Logo" class="h-10 w-auto mr-2">
+    </h1>
+    <div class="flex items-center space-x-4">
+        <span class="text-gray-800 font-medium">Warren Duran</span>
+        <img src="https://via.placeholder.com/40" alt="Profile Picture" class="w-10 h-10 rounded-full border-2 border-green-600">
+    </div>
+</header>
     <style>
         /* Add these new styles */
         body, html {

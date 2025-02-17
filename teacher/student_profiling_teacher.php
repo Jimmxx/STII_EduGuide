@@ -148,37 +148,52 @@ $result = $conn->query($sql);
                 <?php if ($result && $result->num_rows > 0): ?>
                     <?php $no = 1; ?>
                     <?php while ($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <!-- Serial number -->
-                            <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $no++; ?></td>
-                            <!-- Full Name: concatenating first, middle, and last names -->
-                            <td class="border border-gray-300 px-4 py-2">
-                                <?php 
-                                    echo htmlspecialchars(
-                                        $row['s_fname'] . " " . 
-                                        ($row['s_mname'] ? $row['s_mname'] . " " : "") . 
-                                        $row['s_lname']
-                                    ); 
-                                ?>
-                            </td>
-                            <!-- Student ID -->
-                            <td class="border border-gray-300 px-4 py-2">
-                                <?php echo htmlspecialchars($row['student_id'] ?? 'N/A'); ?>
-                            </td>
-                            <!-- Birthdate -->
-                            <td class="border border-gray-300 px-4 py-2">
-                                <?php echo htmlspecialchars($row['birthdate']); ?>
-                            </td>
-                            <!-- Contact number -->
-                            <td class="border border-gray-300 px-4 py-2">
-                                <?php echo htmlspecialchars($row['number']); ?>
-                            </td>
-                            <!-- Action buttons -->
-                            <td class="border border-gray-300 px-4 py-2 text-center">
-                                <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" onclick="window.location='student_view.php?id=<?php echo $row['student_id']; ?>'">View</button>
-                                <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['student_id']; ?>">Delete</button>
-                            </td>
-                        </tr>
+                        <tr> 
+    <!-- Serial number -->
+    <td class="border border-gray-300 px-4 py-2 text-center"><?php echo $no++; ?></td>
+    <!-- Full Name: concatenating first, middle, and last names -->
+    <td class="border border-gray-300 px-4 py-2">
+        <?php 
+            echo htmlspecialchars(
+                $row['s_fname'] . " " . 
+                ($row['s_mname'] ? $row['s_mname'] . " " : "") . 
+                $row['s_lname']
+            ); 
+        ?>
+    </td>
+    <!-- Student ID -->
+    <td class="border border-gray-300 px-4 py-2">
+        <?php echo htmlspecialchars($row['student_id'] ?? 'N/A'); ?>
+    </td>
+    <!-- Birthdate -->
+    <td class="border border-gray-300 px-4 py-2">
+        <?php echo htmlspecialchars($row['birthdate']); ?>
+    </td>
+    <!-- Contact number -->
+    <td class="border border-gray-300 px-4 py-2">
+        <?php echo htmlspecialchars($row['number']); ?>
+    </td>
+    <!-- Action buttons -->
+    <td class="border border-gray-300 px-4 py-2 text-center">
+    <div class="relative inline-block">
+  <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none" 
+          onclick="window.location='student_view.php?id=<?php echo $row['student_id']; ?>'">
+    View
+  </button>
+  <?php if ($row['card_status'] == 0): ?>
+    <span class="absolute top-0 right-0 flex items-center justify-center w-5 h-5 bg-yellow-500 text-white text-xs rounded-full" title="No Card">
+      <i class="bi bi-exclamation-lg"></i>
+    </span>
+  <?php endif; ?>
+</div>
+
+        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" 
+            data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['student_id']; ?>">
+            Delete
+        </button>
+    </td>
+</tr>
+
 
                         <!-- Delete Confirmation Modal for each student -->
                         <div class="modal fade" id="deleteModal<?php echo $row['student_id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?php echo $row['student_id']; ?>" aria-hidden="true">

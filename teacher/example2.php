@@ -139,6 +139,8 @@ document.querySelectorAll('.deleteRowBtn').forEach((button, index) => {
         <div id="2Card" class="school-card" style="display: none;">
             <div id="schoolCardLayout">
     <!-- First Semester -->
+     <form method="post" action="seniorcard_insertion.php">
+     <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($_GET['id'] ?? ''); ?>">
     <div class="mt-3">
     <div style="background-color:#d13ce8; width: 100%; padding: 10px; border-radius: 5px; text-align: center; margin-bottom:10px;">
             <h6 style="margin: 0; color: white; font-weight: bold;">School Card (Senior High)</h6>
@@ -154,19 +156,21 @@ document.querySelectorAll('.deleteRowBtn').forEach((button, index) => {
         <thead>
             <tr>
                 <th rowspan="2" class="align-middle">Subjects</th>
-                <th colspan="2">Quarter</th>
+                <th colspan="4">Quarter</th>
                 <th rowspan="2" class="align-middle">Semester Final Grade</th>
-                <th rowspan="2" class="align-middle">Action</th>
+                <th rowspan="2" colspan="2" class="align-middle">Action</th>
             </tr>
             <tr>
-                <th>1</th>
-                <th>2</th>
+                <th>Unit</th>
+                <th>Prelim</th>
+                <th>Midterm</th>
+                <th>Prefinal</th>
             </tr>
         </thead>
         <tbody>
             <tr class="grade-row">
                 <td>
-                <select class="form-select subject-select">
+                <select class="form-select subject-select" name="subject[]">
                         <option value="" selected>Select Subject</option>
                         <option value="Filipino">Filipino</option>
                         <option value="English">English</option>
@@ -176,26 +180,20 @@ document.querySelectorAll('.deleteRowBtn').forEach((button, index) => {
                         <option value="Add Subject">Add Subject</option>
                     </select>
                 </td>
-                <td><input type="number" class="form-control" placeholder="Q1"></td>
-                <td><input type="number" class="form-control" placeholder="Q2"></td>
-                <td><input type="number" class="form-control" placeholder="Q3"></td>
-                <td><input type="number" class="form-control" placeholder="Q4"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
-                <td><input type="text" class="form-control" placeholder="Remarks"></td>
-                <td><button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button>
-
-                </td>
-                <td><input type="number" class="form-control" placeholder="Q1"></td>
-                <td><input type="number" class="form-control" placeholder="Q2"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Unit Grade" name="unit[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Prelim Grade" name="prelim[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Midterm Grade" name="midterm[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Prefinal Grade" name="prefinal[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Final Grade" name="final_ave[]"></td>
+                <td><input type="text" class="form-control" placeholder="Remarks" name="remarks[]"></td>
                 <td><button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button></td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
                 <td class="fw-bold">General Average for the Semester</td>
-                <td colspan="3"><input type="number" class="form-control" placeholder="Average"></td>
-                <td></td>
+                <td colspan="4"></td>
+                <td ><input type="number" class="form-control" placeholder="Average" name="gen_ave[]"></td>
             </tr>
         </tfoot>
     </table>
@@ -209,18 +207,20 @@ document.querySelectorAll('.deleteRowBtn').forEach((button, index) => {
         <thead>
             <tr>
                 <th rowspan="2" class="align-middle">Subjects</th>
-                <th colspan="2">Quarter</th>
+                <th colspan="4">Quarter</th>
                 <th rowspan="2" class="align-middle">Semester Final Grade</th>
-                <th rowspan="2" class="align-middle">Action</th>
+                <th rowspan="2" colspan="2" class="align-middle">Action</th>
             </tr>
             <tr>
-                <th>3</th>
-                <th>4</th>
+                <th>Unit</th>
+                <th>Prelim</th>
+                <th>Midterm</th>
+                <th>Prefinal</th>
             </tr>
         </thead>
         <tbody>
             <tr class="grade-row">
-                <td><select class="form-select subject-select">
+                <td><select class="form-select subject-select" name="subject1[]">
                         <option value="" selected>Select Subject</option>
                         <option value="Filipino">Filipino</option>
                         <option value="English">English</option>
@@ -230,30 +230,27 @@ document.querySelectorAll('.deleteRowBtn').forEach((button, index) => {
                         <option value="Add Subject">Add Subject</option>
                     </select>
                 </td>
-                <td><input type="number" class="form-control" placeholder="Q1"></td>
-                <td><input type="number" class="form-control" placeholder="Q2"></td>
-                <td><input type="number" class="form-control" placeholder="Q3"></td>
-                <td><input type="number" class="form-control" placeholder="Q4"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
-                <td><input type="text" class="form-control" placeholder="Remarks"></td>
-                <td><button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button></td>
-                <td><input type="number" class="form-control" placeholder="Q3"></td>
-                <td><input type="number" class="form-control" placeholder="Q4"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Unit Grade" name="unit1[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Prelim Grade" name="prelim1[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Midterm Grade" name="midterm1[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Prefinal Grade" name="prelim1[]"></td>
+                <td><input type="number" class="form-control" placeholder="Enter Final Grade" name="final_ave1[]"></td>
+                <td><input type="text" class="form-control" placeholder="Remarks" name="remarks1[]"></td>
                 <td><button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button></td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
                 <td class="fw-bold">General Average for the Semester</td>
-                <td colspan="3"><input type="number" class="form-control" placeholder="Average"></td>
-                <td></td>
+                <td colspan="4"></td>
+                <td><input type="number" class="form-control" placeholder="Average" name="gen_ave1[]"></td>
             </tr>
         </tfoot>
     </table>
 </div>
     </div>
-
+    <button type="submit" class="btn btn-primary" id="saveDataBtn">Save Data</button>
+     </form>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     function addRow(tableId) {
@@ -293,138 +290,147 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 </div>
-<button type="button" class="btn btn-primary" id="saveDataBtn">Save Data</button>
+
 
 </div>
 
 
 <div id="3Card" class="school-card" style="display: none;">
-<div id="schoolCardLayout">
-                        <!-- School Card Inputs (added dynamically) -->
-                         <div class="mt-3">
-                         <div style="background-color:#d13ce8; width: 100%; padding: 10px; border-radius: 5px; text-align: center;margin-bottom:10px;">
-    <h6 style="margin: 0; color: white; font-weight: bold;">School Card(College)</h6>
-</div>
-<div class="row mb-3">
-
-<div style="background-color:#4a78ed; width: 100%; padding: 5px; border-radius: 5px; text-align: center; margin-bottom:10px;margin-top:10px;">
-            <h6 style="margin: 0; color: white; font-weight: bold;">First Semester</h6>
+  <div id="schoolCardLayout">
+    <form method="post" action="collegecard_insertion.php">
+    <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($_GET['id'] ?? ''); ?>">
+    <!-- School Card Inputs (added dynamically) -->
+    <div class="mt-3">
+      <div style="background-color:#d13ce8; width: 100%; padding: 10px; border-radius: 5px; text-align: center; margin-bottom:10px;">
+        <h6 style="margin: 0; color: white; font-weight: bold;">School Card (College)</h6>
+      </div>
+      <div class="row mb-3">
+        <div style="background-color:#4a78ed; width: 100%; padding: 5px; border-radius: 5px; text-align: center; margin:10px 0;">
+          <h6 style="margin: 0; color: white; font-weight: bold;">First Semester</h6>
         </div>
         <button type="button" class="btn btn-secondary" id="addRowBtnFirstSem1" style="margin-bottom: 15px;">Add Row (1st Sem)</button>
         <div class="table-responsive">
-    <table class="table table-bordered text-center" id="firstSemTable1">
-        <thead>
-            <tr>
+          <table class="table table-bordered text-center" id="firstSemTable1">
+            <thead>
+              <tr>
                 <th rowspan="2" class="align-middle">Subjects</th>
-                <th colspan="2">Quarter</th>
+                <th colspan="4">Quarter</th>
                 <th rowspan="2" class="align-middle">Semester Final Grade</th>
-                <th rowspan="2" class="align-middle">Action</th>
-            </tr>
-            <tr>
-                <th>1</th>
-                <th>2</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="grade-row">
-                <td><select class="form-select subject-select">
-                        <option value="" selected>Select Subject</option>
-                        <option value="Filipino">Filipino</option>
-                        <option value="English">English</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Science">Science</option>
-                        <option value="MAPEH">MAPEH</option>
-                        <option value="Add Subject">Add Subject</option>
-                    </select>
+                <th rowspan="2" colspan="2" class="align-middle">Action</th>
+              </tr>
+              <tr>
+              <th>Unit</th>
+                <th>Prelim</th>
+                <th>Midterm</th>
+                <th>Prefinal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="grade-row">
+                <td>
+                  <select class="form-select subject-select" name="subject[]">
+                    <option value="" selected>Select Subject</option>
+                    <option value="Filipino">Filipino</option>
+                    <option value="English">English</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="MAPEH">MAPEH</option>
+                    <option value="Add Subject">Add Subject</option>
+                  </select>
                 </td>
-                <td><input type="number" class="form-control" placeholder="Q1"></td>
-                <td><input type="number" class="form-control" placeholder="Q2"></td>
-                <td><input type="number" class="form-control" placeholder="Q3"></td>
-                <td><input type="number" class="form-control" placeholder="Q4"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
-                <td><input type="text" class="form-control" placeholder="Remarks"></td>
-                <td><button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button></td>
-                <td><input type="number" class="form-control" placeholder="Q1"></td>
-                <td><input type="number" class="form-control" placeholder="Q2"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
-                <td><button type="button" class="btn btn-danger deleteRowBtn1" disabled>🚫</button></td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
+                <td><input type="number" class="form-control" name="unit[]" placeholder="Enter Unit Grade"></td>
+                <td><input type="number" class="form-control" name="prelim[]" placeholder="Enter Prelim Grade"></td>
+                <td><input type="number" class="form-control" name="midterm[]" placeholder="Enter Midterm Grade"></td>
+                <td><input type="number" class="form-control" name="prefinal[]" placeholder="Enter Prefinal Grade"></td>
+                <td><input type="number" class="form-control" name="final_ave[]" placeholder="Final"></td>
+                <td><input type="text" class="form-control" name="remarks[]" placeholder="Remarks"></td>
+                <td>
+                  <button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
                 <td class="fw-bold">General Average for the Semester</td>
-                <td colspan="3"><input type="number" class="form-control" placeholder="Average"></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
-<div style="background-color:#4a78ed; width: min-content; padding: 5px; border-radius: 5px; text-align: left; margin-bottom:10px;margin-top:10px; display: inline-block;">
-    <h6 style="margin: 0; color: white; font-weight: bold; padding-left: 8px; white-space: nowrap;">Second Semester</h6>
-</div></br>
-<button type="button" class="btn btn-secondary" id="addRowBtnSecondSem1">Add Row (2nd Sem)</button>
-<div class="table-responsive mt-3">
-    <table class="table table-bordered text-center" id="secondSemTable1">
-        <thead>
-            <tr>
+                <td colspan="4"></td>
+                <td><input type="number" name="gen_ave[]" class="form-control" placeholder="Average"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        
+        <div style="background-color:#4a78ed; width: min-content; padding: 5px; border-radius: 5px; text-align: left; margin:10px 0; display: inline-block;">
+          <h6 style="margin: 0; color: white; font-weight: bold; padding-left: 8px; white-space: nowrap;">Second Semester</h6>
+        </div>
+        <br>
+        <button type="button" class="btn btn-secondary" id="addRowBtnSecondSem1">Add Row (2nd Sem)</button>
+        <div class="table-responsive mt-3">
+          <table class="table table-bordered text-center" id="secondSemTable1">
+            <thead>
+              <tr>
                 <th rowspan="2" class="align-middle">Subjects</th>
-                <th colspan="2">Quarter</th>
+                <th colspan="4">Quarter</th>
                 <th rowspan="2" class="align-middle">Semester Final Grade</th>
-                <th rowspan="2" class="align-middle">Action</th>
-            </tr>
-            <tr>
-                <th>3</th>
-                <th>4</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="grade-row">
-                <td><select class="form-select subject-select">
-                        <option value="" selected>Select Subject</option>
-                        <option value="Filipino">Filipino</option>
-                        <option value="English">English</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Science">Science</option>
-                        <option value="MAPEH">MAPEH</option>
-                        <option value="Add Subject">Add Subject</option>
-                    </select>
+                <th rowspan="2" colspan="2" class="align-middle">Action</th>
+              </tr>
+              <tr>
+                <th>Unit</th>
+                <th>Prelim</th>
+                <th>Midterm</th>
+                <th>Prefinal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="grade-row">
+                <td>
+                  <select class="form-select subject-select" name="subject1[]">
+                    <option value="" selected>Select Subject</option>
+                    <option value="Filipino">Filipino</option>
+                    <option value="English">English</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="MAPEH">MAPEH</option>
+                    <option value="Add Subject">Add Subject</option>
+                  </select>
                 </td>
-                <td><input type="number" class="form-control" placeholder="Q1"></td>
-                <td><input type="number" class="form-control" placeholder="Q2"></td>
-                <td><input type="number" class="form-control" placeholder="Q3"></td>
-                <td><input type="number" class="form-control" placeholder="Q4"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
-                <td><input type="text" class="form-control" placeholder="Remarks"></td>
-                <td><button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button></td>
-                <td><input type="number" class="form-control" placeholder="Q3"></td>
-                <td><input type="number" class="form-control" placeholder="Q4"></td>
-                <td><input type="number" class="form-control" placeholder="Final"></td>
-                <td><button type="button" class="btn btn-danger deleteRowBtn1" disabled>🚫</button></td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
+                <td><input type="number" class="form-control" name="unit1[]" placeholder="Enter Unit Grade"></td>
+                <td><input type="number" class="form-control" name="prelim1[]" placeholder="Enter Prelim Grade"></td>
+                <td><input type="number" class="form-control" name="midterm1[]" placeholder="Enter Midterm Grade"></td>
+                <td><input type="number" class="form-control" name="prefinal1[]" placeholder="Enter Prefinal Grade"></td>
+                <td><input type="number" class="form-control" name="final_ave1[]" placeholder="Final"></td>
+                <td><input type="text" class="form-control" name="remarks1[]" placeholder="Remarks"></td>
+                <td>
+                  <button type="button" class="btn btn-danger deleteRowBtn" disabled>🚫</button>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
                 <td class="fw-bold">General Average for the Semester</td>
-                <td colspan="3"><input type="number" class="form-control" placeholder="Average"></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+                <td colspan="4"></td>
+                <td><input type="number" name="gen_ave1[]" class="form-control" placeholder="Average"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
     </div>
-
+    <button type="submit" class="btn btn-primary" id="saveDataBtn">Save Data</button>
+  </div>
+</div>
+</form>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     function addRow(tableId) {
         const tbody = document.querySelector(`#${tableId} tbody`);
         const firstRow = tbody.querySelector('.grade-row');
-
         if (firstRow) {
             const newRow = firstRow.cloneNode(true);
             newRow.querySelectorAll('input').forEach(input => input.value = '');
-            newRow.querySelector('.deleteRowBtn1').disabled = false;
-            newRow.querySelector('.deleteRowBtn1').textContent = 'Delete';
-            newRow.querySelector('.deleteRowBtn1').addEventListener('click', function() {
+            const deleteBtn = newRow.querySelector('.deleteRowBtn');
+            deleteBtn.disabled = false;
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', function() {
                 newRow.remove();
             });
             tbody.appendChild(newRow);
@@ -439,7 +445,8 @@ document.addEventListener("DOMContentLoaded", function() {
         addRow('secondSemTable1');
     });
 
-    document.querySelectorAll('.deleteRowBtn1').forEach((button, index) => {
+    // Disable the delete button for the first row in each table
+    document.querySelectorAll('.deleteRowBtn').forEach((button, index) => {
         if (index === 0) {
             button.disabled = true;
             button.textContent = '🚫';
@@ -450,31 +457,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-</script>
-    </div>
-</div>
-<button type="button" class="btn btn-primary" id="saveDataBtn">Save Data</button>
-
-</div>
-
-
-
-<script>
-    // Function to dynamically add a new row to the table
-    function addRow() {
-        const tableBody = document.querySelector('#addStudentModal tbody');
-        const newRow = `
-            <tr>
-                <td><input type="text" class="form-control" placeholder="Subject Name"></td>
-                <td><input type="number" class="form-control" placeholder="Grade" min="0" max="100"></td>
-                <td><input type="number" class="form-control" placeholder="Grade" min="0" max="100"></td>
-                <td><input type="number" class="form-control" placeholder="Grade" min="0" max="100"></td>
-                <td><input type="number" class="form-control" placeholder="Grade" min="0" max="100"></td>
-                <td><input type="number" class="form-control" placeholder="Final Grade" min="0" max="100" readonly></td>
-            </tr>
-        `;
-        tableBody.insertAdjacentHTML('beforeend', newRow);
-    }
 </script>
     <!-- // For testing only:
 // cardId = "1Card"; // or "2Card", "3Card"

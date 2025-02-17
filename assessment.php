@@ -1,243 +1,124 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Assessment</title>
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: skyblue; /* Sky blue background */
-            }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add a playful font -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gradient-to-br from-blue-100 to-purple-100 font-[PatrickHand]"
+        style="opacity: 0; transition: opacity 1s ease;"
+        onload="document.body.style.opacity = '1'">
+    
+    <!-- Navbar -->
+<header class="flex flex-wrap items-center justify-between p-4 sm:px-8 bg-white/80 backdrop-blur-sm shadow-md">
+  <div class="flex flex-col items-start">
+  <a href="home_assessment.php" class="flex items-center bg-transparent">
+  <img src="image/2.png" alt="Logo" class="w-200 h-9 bg-transparent " style="margin-top: -5px;">
+</a>
 
-            .header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 40px;
-                background-color: transparent; /* Transparent navbar */
-                color: black; /* Black text for navbar */
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: 10;
-            }
 
-            .header-left {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-            }
+    <a href="home_assessment.php" class="mt-2 text-sm text-black hover:underline">
+      ← Back to Home Assessment
+    </a>
+  </div>
+  
+  <!-- Progress & Profile -->
+  <div class="flex items-center space-x-4 mt-2 sm:mt-0">
+    <div class="bg-yellow-300 px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+      🚀 1/6
+    </div>
+    <div class="relative group">
+      <img src="image/profile.jpg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-purple-500 shadow-lg">
+      <span class="hidden sm:inline ml-2 text-gray-700">User Name</span>
+    </div>
+  </div>
+</header>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800 animate-pulse">
+        🌟 Which subject sparks your joy? 🌟
+      </h2>
 
-            .header-left h1 {
-                font-size: 1.5rem;
-                font-weight: bold;
-                margin: 0;
-            }
-
-            .back-arrow {
-                font-size: 1rem;
-                color: black; /* Black color for back link */
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                margin-top: 20px;
-                margin-left: 5px; /* Adjusted position for better visibility */
-            }
-
-            .back-arrow:hover {
-                text-decoration: underline;
-            }
-
-            .header-right {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .profile-pic {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                border: 2px solid black; /* Black border for profile picture */
-                object-fit: cover;
-            }
-
-            .container {
-                max-width: 900px;
-                margin: 100px auto 50px; /* Added margin to account for fixed navbar */
-                text-align: center;
-                padding: 20px;
-            }
-
-            h2 {
-                font-size: 2rem;
-                font-weight: bold;
-                margin-bottom: 30px;
-                color: #333; /* Darker gray for text */
-            }
-
-            .options {
-                display: flex;
-                justify-content: center;
-                align-items: stretch; /* Ensures all options are the same height */
-                gap: 40px; /* Space between the options */
-            }
-
-            .option {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-between; /* Ensures even spacing between elements */
-                text-align: center;
-                width: 40%; /* Equal width for both options */
-                border: 1px solid #ddd; /* Light gray border */
-                padding: 20px;
-                border-radius: 8px;
-                background-color: white;
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Added shadow for a 3D effect */
-                transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-            }
-
-            .option:hover {
-                transform: translateY(-5px); /* Lift the box slightly */
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Enhance the shadow */
-            }
-
-            .option img {
-                max-width: 70%;
-                height: auto;
-                margin-bottom: 15px;
-            }
-
-            .option p {
-                font-size: 1rem;
-                margin-bottom: 15px;
-                flex-grow: 1; /* Pushes buttons to the bottom */
-                color: #555; /* Medium gray text */
-            }
-
-            .option button {
-                background-color: #28a745; /* Green for active button */
-                color: white;
-                font-size: 1rem;
-                font-weight: bold;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                width: 100%; /* Full width buttons for better alignment */
-                transition: background-color 0.3s ease;
-            }
-
-            .option button:hover {
-                background-color: #218838;
-            }
-
-            .option button.locked {
-                background-color: #ffc107; /* Yellow for locked button */
-                color: black; /* Black text for better contrast */
-                cursor: pointer; /* Allow unlocking */
-            }
-
-            .arrow {
-                font-size: 2rem;
-                color: #007bff;
-                margin-top: 40px;
-                cursor: pointer;
-            }
-
-            .arrow:hover {
-                color: #0056b3;
-            }
-
-            .warning {
-                color: red;
-                margin-top: 10px;
-                font-size: 1rem;
-                display: none; /* Hidden by default */
-            }
-
-            /* Responsive Design */
-            @media (max-width: 768px) {
-                .options {
-                    flex-direction: column;
-                    gap: 30px; /* Adjust gap for mobile view */
-                }
-
-                .option {
-                    width: 100%; /* Full width for mobile */
-                }
-
-                .option button {
-                    width: 90%; /* Adjust button size for mobile */
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <div class="header-left">
-            <h1><a href="home_assessment.php" style="text-decoration:none;color:black;"> STII EduGuide</a></h1>
-                <a href="home_assessment.php" class="back-arrow">← Back to Home Assessment</a>
-            </div>
-            <div>1 out of 10</div>
-            <div class="header-right">
-                <img src="image/profile.jpg" alt="Profile Picture" class="profile-pic">
-                <span>User Name</span>
-            </div>
-        </div>
-        <div class="container">
-            <h2>Would you rather...</h2>
-            <div class="options">
-                <div class="option">
-                    <!-- Sports Illustration -->
-                    <img src="image/sport.png" alt="Sports">
-                    <p>play sports games like volleyball and basketball</p>
-                    <button onclick="toggleOption(this)">Play Sports</button>
-                </div>
-                <div class="option">
-                    <!-- Board Games Illustration -->
-                    <img src="image/puzzle.png" alt="Board Games">
-                    <p>play board games like chess and scrabble</p>
-                    <button onclick="toggleOption(this)">Play Board Games</button>
-                </div>
-            </div>
-            <button class="arrow" id="nextButton" onclick="validateSelection()">➡️</button>
-            <p class="warning" id="warningText">Please lock a button before proceeding to the next question.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <!-- Science Card -->
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+          <div class="bg-violet-100 rounded-lg p-3 mb-4">
+            <img src="image/science-lab.png" alt="Science" class="w-full h-24 object-contain">
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-blue-600 mb-2">🔬 Science</h3>
+          <button onclick="location.href='assessment2.php'" 
+                  class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center">
+            <span>Choose Science</span>
+            <span class="ml-2">🚀</span>
+          </button>
         </div>
 
-        <script>
-            let selectedButton = null;
+        <!-- Math Card -->
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+          <div class="bg-green-100 rounded-lg p-3 mb-4">
+            <img src="image/math1.png" alt="Math" class="w-full h-24 object-contain">
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-green-600 mb-2">🧮 Math</h3>
+          <button onclick="location.href='assessment2.php'" 
+                  class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center">
+            <span>Choose Math</span>
+            <span class="ml-2">📐</span>
+          </button>
+        </div>
 
-            function toggleOption(button) {
-                const allButtons = document.querySelectorAll(".option button");
+        <!-- Additional Math Cards -->
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+          <div class="bg-blue-100 rounded-lg p-3 mb-4">
+            <img src="image/english.jpg" alt="English" class="w-full h-24 object-contain">
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-green-600 mb-2">🧮 English</h3>
+          <button onclick="location.href='assessment2.php'" 
+                  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center">
+            <span>Choose English</span>
+            <span class="ml-2">📐</span>
+          </button>
+        </div>
 
-                if (selectedButton === button) {
-                    // Unlock if the same button is clicked again
-                    button.classList.remove("locked");
-                    selectedButton = null;
-                } else {
-                    // Unlock all buttons and lock the clicked button
-                    allButtons.forEach(btn => btn.classList.remove("locked"));
-                    button.classList.add("locked");
-                    selectedButton = button;
-                }
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+          <div class="bg-red-100 rounded-lg p-3 mb-4">
+            <img src="image/art.png" alt="Arts" class="w-full h-24 object-contain">
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-green-600 mb-2">🧮 Arts & Creativity</h3>
+          <button onclick="location.href='assessment2.php'" 
+                  class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center">
+            <span>Choose Arts & Creativity</span>
+            <span class="ml-2">📐</span>
+          </button>
+        </div>
 
-                // Hide the warning text if a button is locked
-                document.getElementById("warningText").style.display = "none";
-            }
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+          <div class="bg-pink-100 rounded-lg p-3 mb-4">
+            <img src="image/bussiness.jpg" alt="Math" class="w-full h-24 object-contain">
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-green-600 mb-2">🧮 Bussiness & Finance</h3>
+          <button onclick="location.href='assessment2.php'" 
+                  class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center">
+            <span>Choose Bussiness & Finance</span>
+            <span class="ml-2">📐</span>
+          </button>
+        </div>
 
-            function validateSelection() {
-                if (selectedButton) {
-                    location.href = "assessment2.php"; // Redirect to next question
-                } else {
-                    const warning = document.getElementById("warningText");
-                    warning.style.display = "block"; // Show the warning message
-                }
-            }
-        </script>
-    </body>
-    </html>
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+          <div class="bg-yellow-100 rounded-lg p-3 mb-4">
+            <img src="image/practical3.png" alt="Math" class="w-full h-24 object-contain">
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-green-600 mb-2">🧮 Technical & Practical Work</h3>
+          <button onclick="location.href='assessment2.php'" 
+                  class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center">
+            <span>Choose Technical & Practical Work</span>
+            <span class="ml-2">📐</span>
+          </button>
+        </div>
+        
+      </div>
+    </main>
+  </body>
+</html>

@@ -11,13 +11,13 @@ if (!$student_id) {
 }
 
 // Retrieve the arrays of values from the POST request.
-$subjects        = $_POST['subject'] ?? [];
-$grade_q1        = $_POST['q1'] ?? [];
-$grade_q2        = $_POST['q2'] ?? [];
-$grade_q3        = $_POST['q3'] ?? [];
-$grade_q4        = $_POST['q4'] ?? [];
-$final_grades    = $_POST['final'] ?? [];
-$remarks         = $_POST['remarks'] ?? [];
+$subjects     = $_POST['subject'] ?? [];
+$grade_q1     = $_POST['q1'] ?? [];
+$grade_q2     = $_POST['q2'] ?? [];
+$grade_q3     = $_POST['q3'] ?? [];
+$grade_q4     = $_POST['q4'] ?? [];
+$final_grades = $_POST['final'] ?? [];
+$remarks      = $_POST['remarks'] ?? [];
 
 // Retrieve general average as a single value (not an array)
 $general_average = $_POST['gen_ave'] ?? '';
@@ -25,7 +25,7 @@ $general_average = $_POST['gen_ave'] ?? '';
 // Debugging (optional):
 // echo '<pre>'; print_r($_POST); echo '</pre>';
 
-// Prepare the SQL statement.
+// Prepare the SQL statement for inserting into student_grades.
 // The query expects 9 parameters corresponding to the columns:
 // student_id (integer), subject (string),
 // q1, q2, q3, q4, final_rating, gen_ave (all doubles), and remarks (string).
@@ -68,9 +68,26 @@ for ($i = 0; $i < $rowCount; $i++) {
     }
 }
 
+// After saving the grades, update the student's card_status to 1.
+$updateSql = "UPDATE student_info SET card_status = 1 WHERE student_id = ?";
+$updateStmt = $conn->prepare($updateSql);
+if (!$updateStmt) {
+    die("Prepare failed for update: " . $conn->error);
+}
+$updateStmt->bind_param("i", $student_id);
+if (!$updateStmt->execute()) {
+    echo "Error updating card_status: " . $updateStmt->error . "<br>";
+}
+$updateStmt->close();
+
+// Close the insert statement.
+$stmt->close();
+
+// Optionally, close the database connection if not needed further.
+// $conn->close();
+
 echo "<script>
 alert('Grades saved successfully!');
 window.location.href = 'student_view.php?id=" . urlencode($student_id) . "';
 </script>";
-
 ?>

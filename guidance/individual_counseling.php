@@ -1,3 +1,46 @@
+<?php
+// Include your database connection file
+include('conn.php');
+
+// Check if the 'id' parameter exists in the URL
+if (isset($_GET['id'])) {
+    // Get the 'id' from the GET parameter
+    $id = $_GET['id'];
+
+    // Prepare the SQL query to fetch the student info
+    $query = "SELECT * FROM student_info WHERE student_id = ?";
+    
+    // Prepare and execute the query
+    if ($stmt = $conn->prepare($query)) {
+        // Bind the id to the query
+        $stmt->bind_param("i", $id);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get the result
+        $result = $stmt->get_result();
+
+        // Check if a row was returned
+        if ($result->num_rows > 0) {
+            // Fetch the data
+            $student = $result->fetch_assoc();
+        } else {
+            echo "No student found with that ID.";
+            exit;
+        }
+
+        // Close the statement
+        $stmt->close();
+    }
+} else {
+    echo "No ID provided.";
+    exit;
+}
+
+// Close the database connection
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,30 +262,65 @@
     <div class="flex flex-col md:flex-row gap-6">
         <!-- Profile Information -->
         <div class="flex-1 space-y-4">
-            <div class="space-y-2">
-                <h2 class="text-2xl font-bold text-gray-800">Dermosa Sarabi</h2>
-                <p class="text-gray-500 font-medium">BSIT 3-A</p>
-            </div>
-            
-            <dl class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div class="space-y-1">
-                    <dt class="text-sm text-gray-500">Student ID</dt>
-                    <dd class="font-medium">2013-76546-CM-0</dd>
-                </div>
-                <div class="space-y-1">
-                    <dt class="text-sm text-gray-500">Contact Number</dt>
-                    <dd class="font-medium">2147483647</dd>
-                </div>
-                <div class="space-y-1">
-                    <dt class="text-sm text-gray-500">Email Address</dt>
-                    <dd class="font-medium break-all">hutttt@gmail.com</dd>
-                </div>
-                <div class="space-y-1">
-                    <dt class="text-sm text-gray-500">Location</dt>
-                    <dd class="font-medium">Zamboanga Sibugay </dd>
-                </div>
-            </dl>
+    <div class="space-y-2">
+    <h2 class="text-2xl font-bold text-gray-800">
+    <?php
+    // Concatenate first name, middle name, last name, and suffix
+    $fullName = htmlspecialchars($student['s_fname']) . ' ';
+    
+    // Check if middle name exists and add it
+    if (!empty($student['s_mname'])) {
+        $fullName .= htmlspecialchars($student['s_mname']) . ' ';
+    }
+
+    // Add the last name
+    $fullName .= htmlspecialchars($student['s_lname']);
+
+    // Check if there's a suffix and add it
+    if (!empty($student['suffix'])) {
+        $fullName .= ' ' . htmlspecialchars($student['suffix']);
+    }
+
+    // Display the full name
+    echo $fullName;
+    ?>
+</h2>
+        <p class="text-gray-500 font-medium"><?php echo htmlspecialchars($student['course']); ?></p>
+    </div>
+    
+    <dl class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="space-y-1">
+            <dt class="text-sm text-gray-500">Student ID</dt>
+            <dd class="font-medium"><?php echo htmlspecialchars($student['student_id']); ?></dd>
         </div>
+        <div class="space-y-1">
+            <dt class="text-sm text-gray-500">Contact Number</dt>
+            <dd class="font-medium"><?php echo htmlspecialchars($student['number']); ?></dd>
+        </div>
+        <div class="space-y-1">
+            <dt class="text-sm text-gray-500">Email Address</dt>
+            <dd class="font-medium break-all"><?php echo htmlspecialchars($student['s_email']); ?></dd>
+        </div>
+        <div class="space-y-1">
+            <dt class="text-sm text-gray-500">Location</dt>
+            <dd class="font-medium">
+    <?php
+    // Concatenate province, municipality, and barangay
+    $address = htmlspecialchars($student['province']) . ', ';
+
+    // Add the municipality (if it exists)
+    $address .= htmlspecialchars($student['municipality']) . ', ';
+
+    // Add the barangay (if it exists)
+    $address .= htmlspecialchars($student['barangay']);
+
+    // Display the full address
+    echo $address;
+    ?>
+</dd>
+        </div>
+    </dl>
+</div>
 
         <!-- Action Buttons -->
         <div class="md:w-48 flex flex-col gap-3" >
@@ -297,7 +375,7 @@
 
         <!-- Buttons -->
         <div class="flex justify-end gap-4 mt-6" style="margin-bottom: 50px;">
-            <button type="button" class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600" onclick="window.location='counseling.php'">Cancel</button>
+            <button type="button" class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600" onclick="window.location='student_profiling.php'">Cancel</button>
             <button type="button" class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600" data-bs-toggle="modal" data-bs-target="#confirmationModal">
     Save
 </button>

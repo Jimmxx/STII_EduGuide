@@ -1,128 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructions</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color:skyblue;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructions</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Tailwind CSS (for the navbar) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --background-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 40px;
-            background-color: transparent; /* Transparent navbar */
-            color: black; /* Black text for navbar */
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 10;
-        }
+    body {
+      background: var(--background-gradient);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      padding-top: 120px; /* To avoid content hiding behind the fixed navbar */
+    }
 
-        .header-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
 
-        .header-left h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
+    h1 {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+    }
 
-        .back-arrow {
-            font-size: 1rem;
-            color: black; /* Black color for back link */
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            margin-left: 5px; /* Adjusted position for better visibility */
-        }
+    .instruction-content {
+      text-align: left;
+      margin: 2rem 0;
+    }
 
-        .back-arrow:hover {
-            text-decoration: underline;
-        }
+    .instruction-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #495057;
+      margin-bottom: 1.5rem;
+    }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .btn-custom {
+      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid black; /* Black border for profile picture */
-            object-fit: cover;
-        }
+    .btn-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+    }
 
-        .container {
-            max-width: 700px;
-            margin: 120px auto 0; /* Adjusted margin to account for navbar */
-            text-align: center;
-            padding: 20px;
-        }
+    .btn-custom i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
+    .btn-custom:hover i {
+      transform: translateX(3px);
+    }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .btn-custom {
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .btn-custom:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    @media (max-width: 768px) {
+      .container {
+        margin: 90px 1rem 2rem;
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="header">
-        <div class="header-left">
-        <h1><a href="home_assessment.php" style="text-decoration:none;color:black;"> STII EduGuide</a></h1>
-        <a href="home_assessment.php" class="back-arrow">← Back to Home</a>
-        </div>
-        <div class="header-right">
-            <img src="image/profile.jpg" alt="Profile Picture" class="profile-pic">
-            <span>User Name</span>
-        </div>
+  <!-- Tailwind Navbar -->
+  <header class="fixed top-0 left-0 right-0 flex flex-wrap items-center justify-between p-4 sm:px-8 bg-white/80 backdrop-blur-sm shadow-md z-50">
+    <div class="flex flex-col items-start">
+      <a href="home_assessment.php" class="flex items-center bg-transparent">
+        <img src="image/2.png" alt="Logo" class="w-200 h-9 bg-transparent" style="margin-top: -15px;">
+      </a>
+      <a href="home_assessment.php" class="mt-2 text-sm text-black hover:underline">
+        ← Back to Home Assessment
+      </a>
     </div>
+    
+    <!-- Progress & Profile -->
+    <div class="flex items-center space-x-4 mt-2 sm:mt-0" >
+      <div class="bg-yellow-300 px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+        🚀 1/10
+      </div>
+      <div class="relative group">
+        <img src="image/profile.jpg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-purple-500 shadow-lg" style="margin-top: -20px;">
+        <span class="hidden sm:inline ml-2 text-gray-700">User Name</span>
+      </div>
+    </div>
+  </header>
 
-    <!-- Instructions Content -->
-    <div class="container">
-        <h1>Welcome to the Assessment</h1>
-        <p>
-            In this assessment, you will be asked to make choices between two options.
-            These questions are designed to help us understand your preferences better and
-            recommend the best strand or course for you.
-        </p>
-        <p>Click "Start" when you're ready to begin the assessment!</p>
-        <button class="btn-custom" onclick="location.href='assessment.php'">Start</button>
+  <!-- Instructions Content -->
+  <div class="container">
+    <h1>Welcome to Your Career Assessment</h1>
+    <div class="instruction-content">
+      <p class="lead">
+        🎓 This assessment will help us understand your strengths and preferences through a series of carefully crafted questions. You'll be presented with different scenarios where you'll choose between two options.
+      </p>
+      <div class="alert alert-primary" role="alert">
+        <i class="fas fa-info-circle me-2"></i>
+        There are no right or wrong answers - just be yourself!
+      </div>
+      <p>
+        <strong>What to expect:</strong><br>
+        • 15-20 minute completion time<br>
+        • Multiple-choice format<br>
+        • Instant results with personalized recommendations
+      </p>
     </div>
+    <button class="btn-custom btn-lg text-white" onclick="location.href='assessment.php'">
+      Start Assessment <i class="fas fa-play"></i>
+    </button>
+  </div>
+  
+  <!-- Optionally include Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

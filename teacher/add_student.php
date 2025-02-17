@@ -340,10 +340,10 @@ while ($row = $result->fetch_assoc()) {
                 <option value="GRADE 10">Grade 10</option>
                 <option value="GRADE 11">Grade 11</option>
                 <option value="GRADE 12">Grade 12</option>
-                <option value="1ST YEAR COLLEGE">1st Year College</option>
-                <option value="2ND YEAR COLLEGE">2nd Year College</option>
-                <option value="3RD YEAR COLLEGE">3rd Year College</option>
-                <option value="4TH YEAR COLLEGE">4th Year College</option>
+                <option value="1st Year College">1st Year College</option>
+                <option value="2nd Year College">2nd Year College</option>
+                <option value="3rd Year College">3rd Year College</option>
+                <option value="4th Year College">4th Year College</option>
 
             </select>
         </div>
@@ -381,7 +381,7 @@ while ($row = $result->fetch_assoc()) {
                 </div>
         <div class="col-md-4">
             <label for="strandCourse" class="form-label" style="font-weight: bold;">Strand</label>
-            <select class="form-select py-2" id="strandCourse" name="strand" required style="border: 2px solid #333; background-color: #f8f9fa;">
+            <select class="form-select py-2" id="strand" name="strand" required style="border: 2px solid #333; background-color: #f8f9fa;">
                 <option value="" selected>Select Strand</option>
                 <?= $strandOptions ?> <!-- Dynamically loaded from database -->
                 <option value="add_course">Add Strand/Course</option>
